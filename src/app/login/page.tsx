@@ -11,8 +11,8 @@ function LoginForm() {
   const searchParams = useSearchParams();
   const redirectedFrom = searchParams.get('redirectedFrom');
 
-  const [email, setEmail] = useState('admin@llamerlo.com');
-  const [password, setPassword] = useState('merloparticipa2026');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
