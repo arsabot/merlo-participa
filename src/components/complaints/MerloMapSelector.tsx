@@ -80,6 +80,13 @@ export const MerloMapSelector: React.FC<MerloMapSelectorProps> = ({
 
       mapInstanceRef.current = map;
       markerRef.current = marker;
+
+      setTimeout(() => {
+        if (mapInstanceRef.current) {
+          mapInstanceRef.current.invalidateSize();
+        }
+      }, 250);
+
       if (isMounted) setIsMapReady(true);
     }
 
@@ -150,7 +157,7 @@ export const MerloMapSelector: React.FC<MerloMapSelectorProps> = ({
         </button>
       </div>
 
-      <div className="relative w-full h-72 rounded-xl overflow-hidden border border-purple-200 shadow-inner bg-slate-100">
+      <div className="relative w-full h-80 sm:h-96 min-h-[320px] rounded-2xl overflow-hidden border border-purple-200 shadow-inner bg-slate-100">
         <div ref={mapContainerRef} className="w-full h-full" />
         
         {!isMapReady && (
