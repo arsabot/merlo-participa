@@ -1,0 +1,194 @@
+'use client';
+
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { 
+  PlusCircle, 
+  Search, 
+  Menu, 
+  X, 
+  MapPin, 
+  Lightbulb, 
+  HelpCircle, 
+  ListOrdered,
+  Lock,
+  Home,
+  type LucideIcon,
+} from 'lucide-react';
+
+export const Navbar: React.FC = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const navLinks: { href: string; label: string; icon: LucideIcon }[] = [
+    { href: '/', label: 'Inicio', icon: Home },
+    { href: '/reclamos', label: 'Reclamos vecinales', icon: ListOrdered },
+    { href: '/mapa', label: 'Mapa barrial', icon: MapPin },
+    { href: '/propuestas', label: 'Propuestas', icon: Lightbulb },
+    { href: '/como-funciona', label: 'Cómo funciona', icon: HelpCircle },
+  ];
+
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/';
+    return pathname.startsWith(href);
+  };
+
+  return (
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#E8E4EF]">
+      {/* Institutional Top Disclaimer Bar */}
+      <div className="bg-[#391759] text-purple-100 text-xs py-1.5 px-4 text-center font-medium flex items-center justify-center gap-2">
+        <span className="inline-block w-2 h-2 rounded-full bg-purple-300 animate-pulse" />
+        <span>Portal ciudadano impulsado por <strong>La Libertad Avanza Merlo</strong> &bull; Tu voz para transformar el municipio</span>
+        <span className="hidden md:inline text-purple-300 text-[11px] ml-2 font-normal">
+          (No oficial de la municipalidad &bull; Emergencias llamar al 911)
+        </span>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          
+          {/* Brand Identity */}
+          <Link href="/" className="flex items-center gap-3.5 group focus:outline-none">
+            <div className="h-12 w-auto px-2 py-1 rounded-xl bg-[#391759] flex items-center justify-center shadow-md shadow-purple-900/30 group-hover:scale-105 transition-transform duration-200">
+              <img
+                src="/lla-logo.svg"
+                alt="La Libertad Avanza"
+                className="h-8 w-auto object-contain"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-extrabold text-xl tracking-tight text-[#17151D] flex items-center gap-1.5 leading-none">
+                Merlo<span className="text-[#391759]">Participa</span>
+              </span>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#391759] mt-1">
+                La Libertad Avanza Merlo
+              </span>
+            </div>
+          </Link>
+
+          {/* Desktop Navigation Links */}
+          <nav className="hidden lg:flex items-center gap-1">
+            {navLinks.map((link) => {
+              const active = isActive(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    active
+                      ? 'text-[#391759] bg-purple-50 font-bold'
+                      : 'text-[#6B6875] hover:text-[#17151D] hover:bg-slate-50'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* Action Buttons */}
+          <div className="hidden sm:flex items-center gap-3">
+            <Link
+              href="/seguimiento"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-bold text-[#391759] bg-purple-50 border border-purple-200 hover:bg-purple-100 transition-colors"
+            >
+              <Search className="w-3.5 h-3.5 text-[#391759]" />
+              <span>Consultar mi reclamo</span>
+            </Link>
+
+            <Link
+              href="/reclamos/nuevo"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold text-white bg-[#391759] hover:bg-[#240c3a] shadow-md shadow-purple-900/25 transition-all hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <PlusCircle className="w-4 h-4" />
+              <span>Reportar un problema</span>
+            </Link>
+
+            <Link
+              href="/admin"
+              title="Acceso Gestión"
+              className="p-2 text-[#6B6875] hover:text-[#391759] hover:bg-purple-50 rounded-lg transition-colors ml-1"
+            >
+              <Lock className="w-4 h-4" />
+            </Link>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="flex sm:hidden items-center gap-2">
+            <Link
+              href="/reclamos/nuevo"
+              className="inline-flex items-center justify-center p-2 rounded-lg text-white bg-[#391759]"
+            >
+              <PlusCircle className="w-5 h-5" />
+            </Link>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              type="button"
+              className="p-2 rounded-lg text-slate-700 hover:bg-slate-100 focus:outline-none"
+              aria-label="Abrir menú de navegación"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6 text-[#17151D]" />}
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Mobile Drawer Menu */}
+      {mobileMenuOpen && (
+        <div className="sm:hidden border-t border-[#E8E4EF] bg-white px-4 pt-3 pb-6 space-y-3 shadow-xl">
+          <div className="space-y-1">
+            {navLinks.map((link) => {
+              const active = isActive(link.href);
+              const Icon = link.icon;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium ${
+                    active
+                      ? 'bg-purple-50 text-[#391759] font-bold'
+                      : 'text-slate-700 hover:bg-slate-50'
+                  }`}
+                >
+                  <Icon className="w-4 h-4 text-[#391759]" />
+                  <span>{link.label}</span>
+                </Link>
+              );
+            })}
+          </div>
+
+          <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
+            <Link
+              href="/seguimiento"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold text-[#391759] bg-purple-50 border border-purple-200"
+            >
+              <Search className="w-4 h-4" />
+              <span>Consultar mi reclamo</span>
+            </Link>
+
+            <Link
+              href="/reclamos/nuevo"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold text-white bg-[#391759]"
+            >
+              <PlusCircle className="w-4 h-4" />
+              <span>Reportar un problema</span>
+            </Link>
+
+            <Link
+              href="/admin"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full text-center text-xs text-slate-500 hover:text-[#391759] py-2"
+            >
+              Acceso a panel de gestión
+            </Link>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+};
