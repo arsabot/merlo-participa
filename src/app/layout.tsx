@@ -8,12 +8,22 @@ export const metadata: Metadata = {
   description: "Plataforma ciudadana para reportar problemáticas barriales, reclamos de infraestructura y propuestas comunitarias para el municipio de Merlo, Buenos Aires.",
   keywords: ["Merlo", "La Libertad Avanza", "Reclamos vecinales", "Participación ciudadana", "Padua", "Libertad", "Pontevedra", "Mariano Acosta"],
   authors: [{ name: "La Libertad Avanza Merlo" }],
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico' },
+    ],
+    apple: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+  },
   openGraph: {
     title: "Merlo Participa | Tu voz, tu barrio, tu municipio",
     description: "Espacio de escucha vecinal y gestión cívica para transformar los barrios de Merlo.",
     type: "website",
   },
 };
+
 
 export default function RootLayout({
   children,
