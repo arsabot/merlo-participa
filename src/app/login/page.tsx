@@ -44,7 +44,7 @@ function LoginForm() {
   };
 
   const handleQuickDemoAccess = (role: UserRole) => {
-    const demoEmail = role === 'admin' ? 'admin@llamerlo.com' : 'gestor@llamerlo.com';
+    const demoEmail = role === 'admin' ? 'admin@merloparticipa.org' : 'gestor@merloparticipa.org';
     setAuthSession({
       email: demoEmail,
       role: role,
@@ -73,10 +73,10 @@ function LoginForm() {
               <Lock className="w-6 h-6" />
             </div>
             <h1 className="text-2xl font-black text-[#17151D] tracking-tight">
-              Acceso a Gestión
+              Acceso a Gestión Vecinal
             </h1>
             <p className="text-xs text-[#6B6875]">
-              Panel exclusivo para el equipo y legisladores de La Libertad Avanza Merlo.
+              Panel para coordinadores barriales y administradores comunitarios de Merlo Participa.
             </p>
           </div>
 
@@ -102,7 +102,7 @@ function LoginForm() {
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="space-y-1.5">
               <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
-                Correo Institucional
+                Correo Electrónico
               </label>
               <div className="relative">
                 <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -110,7 +110,7 @@ function LoginForm() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="usuario@llamerlo.com"
+                  placeholder="coordinador@merloparticipa.org"
                   className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#622899]"
                   required
                 />
@@ -151,7 +151,7 @@ function LoginForm() {
           {/* Quick Demo Access Roles */}
           <div className="pt-4 border-t border-slate-100 space-y-2">
             <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block text-center">
-              Acceso rápido con un click:
+              Acceso rápido de prueba:
             </span>
             <div className="grid grid-cols-2 gap-2">
               <button
@@ -159,15 +159,15 @@ function LoginForm() {
                 onClick={() => handleQuickDemoAccess('admin')}
                 className="p-2 rounded-xl text-xs font-semibold bg-[#F4ECF9] text-[#240c3a] hover:bg-purple-100 border border-purple-200 transition-colors flex flex-col items-center justify-center gap-0.5"
               >
-                <span className="font-bold">Administrador</span>
-                <span className="text-[10px] text-purple-700 opacity-80">Acceso total</span>
+                <span className="font-bold">Administrador Comunitario</span>
+                <span className="text-[10px] text-purple-700 opacity-80">Gestión total</span>
               </button>
               <button
                 type="button"
                 onClick={() => handleQuickDemoAccess('gestor')}
                 className="p-2 rounded-xl text-xs font-semibold bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200 transition-colors flex flex-col items-center justify-center gap-0.5"
               >
-                <span className="font-bold">Gestor Territorial</span>
+                <span className="font-bold">Gestor Barrial</span>
                 <span className="text-[10px] text-slate-500 opacity-80">Moderación y filtros</span>
               </button>
             </div>

@@ -19,7 +19,7 @@ export default function PrivacidadPage() {
           Política de Privacidad y Términos de Uso
         </h1>
         <p className="text-xs sm:text-sm text-[#6B6875]">
-          Última actualización: Septiembre de 2026 &bull; Merlo Participa (La Libertad Avanza Merlo)
+          Última actualización: Septiembre de 2026 &bull; Merlo Participa (Comunidad de Vecinos de Merlo)
         </p>
       </div>
 
@@ -30,13 +30,13 @@ export default function PrivacidadPage() {
         <section className="space-y-3">
           <h2 className="text-base sm:text-lg font-bold text-[#17151D] flex items-center gap-2">
             <ShieldCheck className="w-5 h-5 text-[#391759]" />
-            <span>1. Marco Institucional y Propósito</span>
+            <span>1. Marco Comunitario y Propósito</span>
           </h2>
           <p>
-            El portal <strong>Merlo Participa</strong> es una herramienta digital de participación cívica y comunitaria impulsada por el equipo de <strong>La Libertad Avanza Merlo</strong>. Su objetivo es recolectar, visibilizar y canalizar reclamos sobre servicios públicos e infraestructura urbana en el partido de Merlo, provincia de Buenos Aires.
+            El portal <strong>Merlo Participa</strong> es una iniciativa cívica e independiente impulsada por <strong>vecinos autoconvocados y comunidades barriales de Merlo</strong>. Su objetivo es relevar, visibilizar y colaborar comunitariamente en la resolución de reclamos sobre servicios públicos e infraestructura urbana en el partido de Merlo, provincia de Buenos Aires.
           </p>
           <p className="font-semibold text-slate-800">
-            Aclaración legal expresa: Este portal NO es un órgano oficial de la Municipalidad de Merlo ni sus dependencias, ni reemplaza los trámites administrativos formales ante las autoridades correspondientes.
+            Aclaración legal expresa: Este portal es una herramienta ciudadana no gubernamental. NO es un órgano oficial de la Municipalidad de Merlo ni sus dependencias, ni reemplaza los trámites administrativos formales ante las autoridades correspondientes.
           </p>
         </section>
 
@@ -50,7 +50,7 @@ export default function PrivacidadPage() {
             En cumplimiento de la Ley Nacional N° 25.326 de Protección de los Datos Personales de la República Argentina, le informamos que los datos de contacto suministrados (nombre completo, correo electrónico y número de teléfono):
           </p>
           <ul className="list-disc pl-5 space-y-1.5 text-slate-700">
-            <li>Son tratados de manera <strong>estrictamente confidencial</strong> y no se comercializan ni ceden a terceros con fines publicitarios.</li>
+            <li>Son tratados de manera <strong>estrictamente confidencial</strong> y no se comercializan ni ceden a terceros con fines publicitarios ni partidarios.</li>
             <li>Solo se utilizan para verificar la veracidad del reporte, informarle el estado de su reclamo y coordinar acciones vecinales de mejora.</li>
             <li><strong>Nunca se muestran públicamente</strong> en el listado ni en el mapa interactivo de reportes.</li>
           </ul>
@@ -95,7 +95,7 @@ export default function PrivacidadPage() {
             5. Derechos de Acceso, Rectificación y Supresión
           </h2>
           <p>
-            Cualquier vecino tiene derecho a solicitar la baja o rectificación de su reclamo o de sus datos de contacto en cualquier momento, enviando un mensaje con su código de seguimiento a través de los canales de contacto de La Libertad Avanza Merlo.
+            Cualquier vecino tiene derecho a solicitar la baja o rectificación de su reclamo o de sus datos de contacto en cualquier momento, enviando un mensaje con su código de seguimiento a través de los canales comunitarios de Merlo Participa.
           </p>
         </section>
 

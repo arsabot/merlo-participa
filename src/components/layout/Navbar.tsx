@@ -39,9 +39,9 @@ export const Navbar: React.FC = () => {
       {/* Institutional Top Disclaimer Bar */}
       <div className="bg-[#391759] text-purple-100 text-xs py-1.5 px-4 text-center font-medium flex items-center justify-center gap-2">
         <span className="inline-block w-2 h-2 rounded-full bg-purple-300 animate-pulse" />
-        <span>Portal ciudadano impulsado por <strong>La Libertad Avanza Merlo</strong> &bull; Tu voz para transformar el municipio</span>
+        <span>Portal ciudadano independiente impulsado por los <strong>Vecinos de Merlo</strong> &bull; Tu voz para transformar el barrio</span>
         <span className="hidden md:inline text-purple-300 text-[11px] ml-2 font-normal">
-          (No oficial de la municipalidad &bull; Emergencias llamar al 911)
+          (Iniciativa comunitaria no oficial &bull; Emergencias llamar al 911)
         </span>
       </div>
 
@@ -50,11 +50,11 @@ export const Navbar: React.FC = () => {
           
           {/* Brand Identity */}
           <Link href="/" className="flex items-center gap-3.5 group focus:outline-none">
-            <div className="h-12 w-auto px-2 py-1 rounded-xl bg-[#391759] flex items-center justify-center shadow-md shadow-purple-900/30 group-hover:scale-105 transition-transform duration-200">
+            <div className="h-12 w-12 rounded-2xl bg-[#391759] flex items-center justify-center shadow-md shadow-purple-900/30 group-hover:scale-105 transition-transform duration-200 p-1.5 border border-purple-800">
               <img
-                src="/lla-logo.svg"
-                alt="La Libertad Avanza"
-                className="h-8 w-auto object-contain"
+                src="/icon.svg"
+                alt="Merlo Participa"
+                className="h-9 w-9 object-contain"
               />
             </div>
             <div className="flex flex-col">
@@ -62,7 +62,7 @@ export const Navbar: React.FC = () => {
                 Merlo<span className="text-[#391759]">Participa</span>
               </span>
               <span className="text-[10px] font-bold uppercase tracking-wider text-[#391759] mt-1">
-                La Libertad Avanza Merlo
+                Portal Vecinal Independiente
               </span>
             </div>
           </Link>

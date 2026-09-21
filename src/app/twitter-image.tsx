@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const alt = 'Merlo Participa | La Libertad Avanza Merlo';
+export const alt = 'Merlo Participa | Portal Vecinal Independiente';
 export const size = {
   width: 1200,
   height: 630,
@@ -56,7 +56,7 @@ export default async function Image() {
                 color: '#E9D5FF',
               }}
             >
-              La Libertad Avanza Merlo
+              Portal Vecinal Independiente
             </span>
           </div>
 
@@ -72,7 +72,7 @@ export default async function Image() {
               border: '1px solid rgba(168, 85, 247, 0.4)',
             }}
           >
-            Portal Vecinal 2026
+            Comunidad de Merlo
           </div>
         </div>
 
@@ -103,7 +103,7 @@ export default async function Image() {
               lineHeight: 1.35,
             }}
           >
-            Plataforma ciudadana para reportar problemáticas barriales, reclamos de infraestructura y propuestas para transformar Merlo.
+            Plataforma ciudadana impulsada por vecinos para reportar problemáticas barriales, reclamos de infraestructura y propuestas comunitarias.
           </p>
         </div>
 
@@ -163,7 +163,7 @@ export default async function Image() {
                 border: '1px solid rgba(168, 85, 247, 0.3)',
               }}
             >
-              🔍 Seguimiento con Código
+              🤝 Impulsado por Vecinos
             </div>
           </div>
 

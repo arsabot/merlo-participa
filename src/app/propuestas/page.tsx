@@ -63,7 +63,7 @@ export default function PropuestasPage() {
             Las mejores ideas nacen de quienes viven el día a día en el barrio
           </h2>
           <p className="text-xs sm:text-sm text-[#6B6875] max-w-xl leading-relaxed">
-            Las propuestas que acumulan mayor apoyo de los vecinos son analizadas prioritariamente por los equipos técnicos y el bloque legislativo de La Libertad Avanza Merlo para convertirlas en proyectos de ordenanza.
+            Las propuestas que acumulan mayor apoyo de la comunidad son visibilizadas públicamente e impulsadas colectivamente para transformar los barrios de Merlo.
           </p>
         </div>
 

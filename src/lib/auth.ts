@@ -49,7 +49,7 @@ export function getAuthCookie(): AuthSession | null {
 export function setAuthSession(sessionData: { email: string; name?: string; role?: UserRole }) {
   const session: AuthSession = {
     email: sessionData.email,
-    name: sessionData.name || (sessionData.role === 'admin' ? 'Administrador LLA' : 'Gestor Territorial'),
+    name: sessionData.name || (sessionData.role === 'admin' ? 'Administrador Comunitario' : 'Gestor Barrial'),
     role: sessionData.role || 'admin',
     expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
   };
@@ -85,10 +85,10 @@ export function getClientAuthSession(): AuthSession | null {
     const isLogged = localStorage.getItem(AUTH_LOGGED_KEY) === 'true';
     if (isLogged) {
       const role = (localStorage.getItem(AUTH_ROLE_KEY) as UserRole) || 'admin';
-      const email = localStorage.getItem('merlo_participa_user_email') || 'admin@llamerlo.com';
+      const email = localStorage.getItem('merlo_participa_user_email') || 'admin@merloparticipa.org';
       const session: AuthSession = {
         email,
-        name: role === 'admin' ? 'Administrador LLA' : 'Gestor Territorial',
+        name: role === 'admin' ? 'Administrador Comunitario' : 'Gestor Barrial',
         role,
         expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
       };

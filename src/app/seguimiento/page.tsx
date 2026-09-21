@@ -237,7 +237,7 @@ function SeguimientoContent() {
           <span>¿Cómo se gestiona tu reclamo?</span>
         </h3>
         <p className="text-xs text-slate-600 leading-relaxed">
-          Cada reclamo recibido en Merlo Participa es analizado por el equipo técnico territorial de La Libertad Avanza Merlo. Los reclamos validados se canalizan a través de presentaciones de proyectos legislativos, pedidos de informe formal a las dependencias municipales y seguimiento directo junto a los vecinos de cada barrio.
+          Cada reclamo recibido en Merlo Participa es verificado por la comunidad de coordinadores barriales. Los reportes validados se visibilizan públicamente en el mapa comunitario, se organizan en petitorios vecinales y se acompañan con seguimiento ciudadano directo ante las dependencias correspondientes.
         </p>
       </div>
 

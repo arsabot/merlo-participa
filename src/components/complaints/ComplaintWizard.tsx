@@ -638,7 +638,7 @@ export const ComplaintWizard: React.FC = () => {
                   className="mt-1 w-4 h-4 text-[#391759] rounded focus:ring-purple-400"
                 />
                 <span className="text-xs text-slate-600 leading-relaxed">
-                  Acepto la <Link href="/privacidad" target="_blank" className="text-[#391759] font-semibold underline">política de privacidad</Link> y autorizo al equipo de La Libertad Avanza Merlo a gestionar y dar seguimiento a la presente solicitud vecinal.
+                  Acepto la <Link href="/privacidad" target="_blank" className="text-[#391759] font-semibold underline">política de privacidad</Link> y autorizo a los coordinadores comunitarios de Merlo Participa a gestionar y dar seguimiento a la presente solicitud vecinal.
                 </span>
               </label>
               {errors.privacyAccepted && (
@@ -717,7 +717,7 @@ export const ComplaintWizard: React.FC = () => {
             <div className="p-4 rounded-xl bg-slate-100 border border-slate-200 flex items-start gap-2.5 text-xs text-slate-600 leading-relaxed">
               <ShieldAlert className="w-4 h-4 text-[#391759] shrink-0 mt-0.5" />
               <span>
-                Al enviar este reporte, el equipo de La Libertad Avanza Merlo lo evaluará para impulsar el pedido de informe y la gestión correspondiente. Recordá que este portal es una herramienta cívica y no reemplaza los servicios oficiales de emergencias (911).
+                Al enviar este reporte, la comunidad vecinal de Merlo Participa lo revisará para coordinar visibilidad y difusión. Recordá que este portal es una herramienta ciudadana y no reemplaza los servicios oficiales de emergencias (911).
               </span>
             </div>
           </div>

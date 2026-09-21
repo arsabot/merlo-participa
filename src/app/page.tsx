@@ -55,7 +55,7 @@ export default function HomePage() {
               
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-100/80 text-[#391759] text-xs font-bold border border-purple-200 shadow-sm animate-fade-in">
                 <Sparkles className="w-3.5 h-3.5 text-[#391759]" />
-                <span>Participación Vecinal &bull; La Libertad Avanza Merlo</span>
+                <span>Portal Vecinal Independiente &bull; Impulsado por los vecinos</span>
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#17151D] tracking-tight leading-[1.1]">

@@ -23,7 +23,7 @@ export default function NuevoReclamoPage() {
             Presentar Reclamo o Propuesta
           </h1>
           <p className="text-xs sm:text-sm text-[#6B6875]">
-            Completá los pasos para sumar la voz de tu barrio al portal de La Libertad Avanza Merlo.
+            Completá los pasos para sumar la voz de tu barrio a la red comunitaria de Merlo.
           </p>
         </div>
 

@@ -8,25 +8,27 @@ const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://merlo-participa.verc
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Merlo Participa | Portal de Participación Vecinal - La Libertad Avanza",
+    default: "Merlo Participa | Portal Vecinal y Participación Ciudadana",
     template: "%s | Merlo Participa",
   },
-  description: "Plataforma ciudadana para reportar problemáticas barriales, reclamos de infraestructura y propuestas comunitarias para el municipio de Merlo, Buenos Aires.",
+  description: "Plataforma ciudadana independiente impulsada por los vecinos para reportar problemáticas barriales, reclamos de infraestructura y propuestas comunitarias para el municipio de Merlo.",
   keywords: [
     "Merlo", 
-    "La Libertad Avanza", 
-    "La Libertad Avanza Merlo", 
-    "Reclamos vecinales", 
+    "Merlo Participa",
+    "Portal Vecinal Merlo", 
+    "Reclamos vecinales Merlo", 
     "Participación ciudadana", 
+    "Vecinos de Merlo",
     "San Antonio de Padua", 
     "Libertad", 
     "Pontevedra", 
     "Mariano Acosta",
-    "Parque San Martín"
+    "Parque San Martín",
+    "Merlo Centro"
   ],
-  authors: [{ name: "La Libertad Avanza Merlo", url: siteUrl }],
-  creator: "La Libertad Avanza Merlo",
-  publisher: "La Libertad Avanza Merlo",
+  authors: [{ name: "Vecinos de Merlo", url: siteUrl }],
+  creator: "Merlo Participa",
+  publisher: "Comunidad de Merlo",
   formatDetection: {
     email: false,
     address: false,
@@ -45,8 +47,8 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "Merlo Participa | Tu voz, tu barrio, tu municipio",
-    description: "Espacio de escucha vecinal y gestión cívica para transformar los barrios de Merlo.",
+    title: "Merlo Participa | Tu voz, tu barrio, tu comunidad",
+    description: "Plataforma ciudadana independiente impulsada por vecinos de Merlo para visibilizar reclamos de luminarias, baches, cloacas, seguridad y propuestas barriales.",
     url: siteUrl,
     siteName: "Merlo Participa",
     images: [
@@ -54,7 +56,7 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: "Merlo Participa | La Libertad Avanza Merlo",
+        alt: "Merlo Participa | Portal Vecinal Independiente",
         type: 'image/png',
       },
       {
@@ -70,10 +72,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Merlo Participa | Tu voz, tu barrio, tu municipio",
-    description: "Espacio de escucha vecinal y gestión cívica para transformar los barrios de Merlo.",
+    title: "Merlo Participa | Tu voz, tu barrio, tu comunidad",
+    description: "Plataforma ciudadana independiente impulsada por vecinos de Merlo para visibilizar reclamos y transformar los barrios.",
     images: ['/og-image.png'],
-    creator: "@llamerlo",
   },
   robots: {
     index: true,

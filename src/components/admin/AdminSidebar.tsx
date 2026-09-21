@@ -39,19 +39,19 @@ export const AdminSidebar: React.FC = () => {
       <div className="space-y-6">
         {/* Brand Header */}
         <div className="flex items-center gap-3">
-          <div className="h-10 w-auto px-2 py-0.5 rounded-xl bg-[#391759] flex items-center justify-center shadow-sm">
+          <div className="h-10 w-10 rounded-xl bg-[#391759] flex items-center justify-center shadow-sm shrink-0">
             <img
-              src="/lla-logo.svg"
-              alt="La Libertad Avanza"
-              className="h-7 w-auto object-contain"
+              src="/merlo-logo.svg"
+              alt="Merlo Participa"
+              className="h-6 w-auto object-contain"
             />
           </div>
           <div>
             <span className="font-extrabold text-sm text-[#17151D] block leading-tight">
-              Panel de Gestión
+              Gestión Vecinal
             </span>
             <span className="text-[10px] font-bold text-[#391759] uppercase tracking-wider">
-              LLA Merlo
+              Merlo Participa
             </span>
           </div>
         </div>
@@ -62,7 +62,7 @@ export const AdminSidebar: React.FC = () => {
             <div className="flex items-center gap-2">
               <UserCheck className="w-3.5 h-3.5 text-[#391759]" />
               <span className="text-xs font-bold text-[#17151D]">
-                {session.role === 'admin' ? 'Administrador' : 'Gestor Territorial'}
+                {session.role === 'admin' ? 'Administrador Comunitario' : 'Gestor Barrial'}
               </span>
             </div>
             <p className="text-[11px] text-[#6B6875] truncate font-medium">

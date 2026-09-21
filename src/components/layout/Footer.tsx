@@ -21,11 +21,11 @@ export const Footer: React.FC = () => {
           {/* Brand & Mission */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3.5">
-              <div className="h-12 w-auto px-2 py-1 rounded-xl bg-[#391759] border border-purple-800/60 flex items-center justify-center shadow-md">
+              <div className="h-12 w-12 rounded-2xl bg-[#391759] border border-purple-800/60 flex items-center justify-center shadow-md p-1.5">
                 <img
-                  src="/lla-logo.svg"
-                  alt="La Libertad Avanza"
-                  className="h-8 w-auto object-contain"
+                  src="/icon.svg"
+                  alt="Merlo Participa"
+                  className="h-9 w-9 object-contain"
                 />
               </div>
               <div>
@@ -33,7 +33,7 @@ export const Footer: React.FC = () => {
                   Merlo<span className="text-[#8B5CF6]">Participa</span>
                 </span>
                 <p className="text-[11px] text-purple-300 font-bold uppercase tracking-wider mt-1">
-                  La Libertad Avanza Merlo
+                  Portal Vecinal Comunitario
                 </p>
               </div>
             </div>
@@ -136,7 +136,7 @@ export const Footer: React.FC = () => {
             <span>Aviso Legal y de Emergencias Importante</span>
           </div>
           <p>
-            <strong>Merlo Participa</strong> es una plataforma de participación ciudadana y gestión comunitaria impulsada por el equipo territorial y legislativo de <strong>La Libertad Avanza Merlo</strong>. No constituye una dependencia oficial ni reemplaza los canales formales de la Municipalidad de Merlo. Los reclamos recepcionados son relevados y canalizados mediante proyectos legislativos, pedidos de informe y acciones comunitarias.
+            <strong>Merlo Participa</strong> es una plataforma ciudadana independiente de participación vecinal y articulación comunitaria impulsada por vecinos de Merlo. No constituye una dependencia oficial de la Municipalidad de Merlo. Los reclamos recepcionados son visibilizados y canalizados comunitariamente para promover mejoras en los barrios.
           </p>
           <p className="text-slate-500 font-medium">
             <strong>EMERGENCIAS:</strong> En caso de emergencias médicas, incendios, riesgo de vida o situaciones delictivas en curso, comuníquese de inmediato a las líneas telefónicas oficiales de emergencia: <strong>911 (Policía)</strong>, <strong>107 (SAME)</strong> o <strong>100 (Bomberos)</strong>.
@@ -145,9 +145,9 @@ export const Footer: React.FC = () => {
 
         {/* Bottom copyright */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-          <p>&copy; {new Date().getFullYear()} Merlo Participa &bull; La Libertad Avanza Merlo. Todos los derechos reservados.</p>
+          <p>&copy; {new Date().getFullYear()} Merlo Participa &bull; Portal Vecinal Comunitario. Todos los derechos reservados.</p>
           <p className="text-slate-400">
-            Tu voz, tu barrio, tu municipio.
+            Tu voz, tu barrio, tu comunidad.
           </p>
         </div>
 

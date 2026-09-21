@@ -19,11 +19,11 @@ export default function ComoFuncionaPage() {
   const faqs = [
     {
       q: '¿Qué es Merlo Participa?',
-      a: 'Es una plataforma digital cívica y comunitaria desarrollada por el equipo de La Libertad Avanza Merlo para escuchar a los vecinos, relevar las problemáticas de cada barrio y articular soluciones mediante proyectos de ordenanza, pedidos de informe y seguimiento territorial.',
+      a: 'Es una plataforma digital cívica y comunitaria impulsada por vecinos de Merlo para escuchar a la comunidad, relevar las problemáticas de cada barrio y articular visibilidad vecinal y seguimiento de soluciones.',
     },
     {
       q: '¿Es un portal oficial de la Municipalidad de Merlo?',
-      a: 'No. No es un organismo municipal oficial ni implica que el reclamo quede automáticamente asentado en el sistema burocrático municipal. Es una herramienta de gestión y participación política vecinal para dar visibilidad, auditar el estado del municipio y exigir respuestas concretas.',
+      a: 'No. No es un organismo municipal oficial. Es una herramienta comunitaria independiente creada por y para los vecinos con el objetivo de dar visibilidad, auditar el estado del municipio y coordinar esfuerzos vecinales.',
     },
     {
       q: '¿Qué ocurre en caso de una urgencia o riesgo de vida?',
@@ -31,7 +31,7 @@ export default function ComoFuncionaPage() {
     },
     {
       q: '¿Mis datos personales (nombre, teléfono, correo) son visibles para cualquiera?',
-      a: 'No. La información de contacto es estrictamente confidencial y solo accesible por los gestores autorizados para comunicarse con usted. En la vista pública solo se muestra el título, descripción barrial, categoría y ubicación aproximada.',
+      a: 'No. La información de contacto es estrictamente confidencial y solo accesible por los gestores comunitarios para comunicarse con usted. En la vista pública solo se muestra el título, descripción barrial, categoría y ubicación aproximada.',
     },
     {
       q: '¿Cómo puedo hacer el seguimiento de mi reclamo?',
@@ -56,7 +56,7 @@ export default function ComoFuncionaPage() {
           ¿Cómo Funciona Merlo Participa?
         </h1>
         <p className="text-xs sm:text-sm text-[#6B6875] leading-relaxed">
-          Conocé el circuito integral desde que reportás un problema hasta su seguimiento legislativo y territorial.
+          Conocé el circuito integral desde que reportás un problema hasta su seguimiento y difusión comunitaria.
         </p>
       </div>
 
@@ -83,9 +83,9 @@ export default function ComoFuncionaPage() {
             <span className="w-9 h-9 rounded-xl bg-[#F4ECF9] text-[#240c3a] font-black text-sm flex items-center justify-center">
               02
             </span>
-            <h3 className="text-base font-bold text-[#17151D]">Revisión y constatación territorial</h3>
+            <h3 className="text-base font-bold text-[#17151D]">Revisión y constatación barrial</h3>
             <p className="text-xs text-[#6B6875] leading-relaxed">
-              Los referentes territoriales de La Libertad Avanza Merlo verifican la existencia del reclamo (baches, luminarias, zanjas, microbasurales) y clasifican el grado de urgencia barrial.
+              Los referentes y vecinos del barrio verifican la existencia del reclamo (baches, luminarias, zanjas, microbasurales) y clasifican el grado de urgencia en la zona.
             </p>
           </div>
 
@@ -93,9 +93,9 @@ export default function ComoFuncionaPage() {
             <span className="w-9 h-9 rounded-xl bg-[#F4ECF9] text-[#240c3a] font-black text-sm flex items-center justify-center">
               03
             </span>
-            <h3 className="text-base font-bold text-[#17151D]">Derivación y proyectos legislativos</h3>
+            <h3 className="text-base font-bold text-[#17151D]">Visibilización y canalización</h3>
             <p className="text-xs text-[#6B6875] leading-relaxed">
-              Las problemáticas constatadas se canalizan mediante pedidos formales de informe, proyectos de ordenanza y minutas de comunicación elevadas al Concejo Deliberante de Merlo.
+              Las problemáticas validadas ganan difusión pública y se canalizan ante las áreas correspondientes mediante notas formales y acciones comunitarias vecinales.
             </p>
           </div>
 
@@ -138,10 +138,10 @@ export default function ComoFuncionaPage() {
       <div className="p-6 rounded-3xl bg-[#391759] text-white space-y-3">
         <div className="flex items-center gap-2 text-amber-400 font-bold text-sm">
           <ShieldAlert className="w-5 h-5" />
-          <span>Aclaración Institucional de Responsabilidad</span>
+          <span>Aclaración Comunitaria de Responsabilidad</span>
         </div>
         <p className="text-xs text-purple-100 leading-relaxed">
-          Merlo Participa es un canal de articulación comunitaria gestionado por <strong>La Libertad Avanza Merlo</strong>. Las gestiones realizadas no garantizan la respuesta de la administración municipal actual pero otorgan visibilidad pública y seguimiento formal a las demandas de los contribuyentes merlenses.
+          Merlo Participa es un canal de articulación ciudadana independiente gestionado por vecinos y organizaciones comunitarias. Las acciones otorgan visibilidad pública y seguimiento vecinal a las demandas y problemáticas del partido de Merlo.
         </p>
       </div>
 
