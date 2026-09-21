@@ -3,11 +3,35 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://merlo-participa.vercel.app';
+
 export const metadata: Metadata = {
-  title: "Merlo Participa | Portal de Participación Vecinal - La Libertad Avanza Merlo",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Merlo Participa | Portal de Participación Vecinal - La Libertad Avanza",
+    template: "%s | Merlo Participa",
+  },
   description: "Plataforma ciudadana para reportar problemáticas barriales, reclamos de infraestructura y propuestas comunitarias para el municipio de Merlo, Buenos Aires.",
-  keywords: ["Merlo", "La Libertad Avanza", "Reclamos vecinales", "Participación ciudadana", "Padua", "Libertad", "Pontevedra", "Mariano Acosta"],
-  authors: [{ name: "La Libertad Avanza Merlo" }],
+  keywords: [
+    "Merlo", 
+    "La Libertad Avanza", 
+    "La Libertad Avanza Merlo", 
+    "Reclamos vecinales", 
+    "Participación ciudadana", 
+    "San Antonio de Padua", 
+    "Libertad", 
+    "Pontevedra", 
+    "Mariano Acosta",
+    "Parque San Martín"
+  ],
+  authors: [{ name: "La Libertad Avanza Merlo", url: siteUrl }],
+  creator: "La Libertad Avanza Merlo",
+  publisher: "La Libertad Avanza Merlo",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   icons: {
     icon: [
       { url: '/icon.svg', type: 'image/svg+xml' },
@@ -19,8 +43,21 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Merlo Participa | Tu voz, tu barrio, tu municipio",
-    description: "Espacio de escucha vecinal y gestión cívica para transformar los barrios de Merlo.",
+    description: "Plataforma vecinal para reportar reclamos de luminarias, baches, cloacas, seguridad y propuestas de mejora para transformar Merlo.",
+    url: siteUrl,
+    siteName: "Merlo Participa",
+    locale: "es_AR",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Merlo Participa | Tu voz, tu barrio, tu municipio",
+    description: "Plataforma vecinal impulsada por La Libertad Avanza Merlo para escuchar y gestionar reclamos barriales.",
+    creator: "@llamerlo",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
