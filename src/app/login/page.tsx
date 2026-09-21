@@ -59,23 +59,23 @@ function LoginForm() {
         {/* Return link */}
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#391759] hover:underline"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0B4F8A] hover:underline"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Volver al portal público</span>
         </Link>
 
         {/* Card */}
-        <div className="bg-white rounded-3xl p-8 border border-[#E8E4EF] shadow-lla-card space-y-6">
+        <div className="bg-white rounded-3xl p-8 border border-[#E2E8F0] shadow-civic-card space-y-6">
           
           <div className="text-center space-y-2">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#391759] to-[#240c3a] text-white flex items-center justify-center mx-auto shadow-md">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#0B4F8A] to-[#072C4F] text-white flex items-center justify-center mx-auto shadow-md">
               <Lock className="w-6 h-6" />
             </div>
-            <h1 className="text-2xl font-black text-[#17151D] tracking-tight">
+            <h1 className="text-2xl font-black text-[#0F172A] tracking-tight">
               Acceso a Gestión Vecinal
             </h1>
-            <p className="text-xs text-[#6B6875]">
+            <p className="text-xs text-[#64748B]">
               Panel para coordinadores barriales y administradores comunitarios de Merlo Participa.
             </p>
           </div>
@@ -111,7 +111,7 @@ function LoginForm() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="coordinador@merloparticipa.org"
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#622899]"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0284C7]"
                   required
                 />
               </div>
@@ -128,7 +128,7 @@ function LoginForm() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#622899]"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0284C7]"
                   required
                 />
               </div>
@@ -137,7 +137,7 @@ function LoginForm() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3 rounded-xl font-bold text-sm text-white bg-[#391759] hover:bg-[#240c3a] shadow-md shadow-[#391759]/25 transition-all flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-xl font-bold text-sm text-white bg-[#0B4F8A] hover:bg-[#072C4F] shadow-md shadow-sky-900/20 transition-all flex items-center justify-center gap-2"
             >
               {isLoading ? (
                 <span className="w-4 h-4 rounded-full border-2 border-white border-t-transparent animate-spin" />
@@ -157,10 +157,10 @@ function LoginForm() {
               <button
                 type="button"
                 onClick={() => handleQuickDemoAccess('admin')}
-                className="p-2 rounded-xl text-xs font-semibold bg-[#F4ECF9] text-[#240c3a] hover:bg-purple-100 border border-purple-200 transition-colors flex flex-col items-center justify-center gap-0.5"
+                className="p-2 rounded-xl text-xs font-semibold bg-sky-50 text-[#072C4F] hover:bg-sky-100 border border-sky-200 transition-colors flex flex-col items-center justify-center gap-0.5"
               >
                 <span className="font-bold">Administrador Comunitario</span>
-                <span className="text-[10px] text-purple-700 opacity-80">Gestión total</span>
+                <span className="text-[10px] text-sky-700 opacity-80">Gestión total</span>
               </button>
               <button
                 type="button"
@@ -184,7 +184,7 @@ export default function LoginPage() {
   return (
     <Suspense fallback={
       <div className="min-h-[80vh] flex items-center justify-center">
-        <span className="w-6 h-6 rounded-full border-2 border-[#391759] border-t-transparent animate-spin" />
+        <span className="w-6 h-6 rounded-full border-2 border-[#0B4F8A] border-t-transparent animate-spin" />
       </div>
     }>
       <LoginForm />

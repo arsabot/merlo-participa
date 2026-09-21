@@ -60,15 +60,15 @@ export default function ModeracionPage() {
     <div className="space-y-6 max-w-7xl mx-auto">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E8E4EF]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E2E8F0]">
         <div>
-          <span className="text-xs font-bold uppercase tracking-wider text-[#391759]">
+          <span className="text-xs font-bold uppercase tracking-wider text-[#0B4F8A]">
             Control de Calidad & Privacidad
           </span>
-          <h1 className="text-2xl sm:text-3xl font-black text-[#17151D] tracking-tight mt-0.5">
+          <h1 className="text-2xl sm:text-3xl font-black text-[#0F172A] tracking-tight mt-0.5">
             Panel de Moderación de Contenidos
           </h1>
-          <p className="text-xs sm:text-sm text-[#6B6875]">
+          <p className="text-xs sm:text-sm text-[#64748B]">
             Revisá reportes para evitar acusaciones personales indebidas, filtración de datos sensibles o contenido no verificado.
           </p>
         </div>
@@ -80,13 +80,13 @@ export default function ModeracionPage() {
       </div>
 
       {/* Filter Tabs */}
-      <div className="bg-white p-4 rounded-2xl border border-[#E8E4EF] shadow-lla-soft flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="bg-white p-4 rounded-2xl border border-[#E2E8F0] shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <button
             onClick={() => setFilter('all')}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-colors ${
               filter === 'all'
-                ? 'bg-[#391759] text-white'
+                ? 'bg-[#0B4F8A] text-white'
                 : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
             }`}
           >
@@ -96,7 +96,7 @@ export default function ModeracionPage() {
             onClick={() => setFilter('approved')}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-colors ${
               filter === 'approved'
-                ? 'bg-[#391759] text-white'
+                ? 'bg-[#0B4F8A] text-white'
                 : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
             }`}
           >
@@ -106,7 +106,7 @@ export default function ModeracionPage() {
             onClick={() => setFilter('pending')}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-colors ${
               filter === 'pending'
-                ? 'bg-[#391759] text-white'
+                ? 'bg-[#0B4F8A] text-white'
                 : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
             }`}
           >
@@ -121,7 +121,7 @@ export default function ModeracionPage() {
             placeholder="Buscar reporte..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-3 py-1.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-purple-400 focus:outline-none"
+            className="w-full pl-9 pr-3 py-1.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-sky-400 focus:outline-none"
           />
         </div>
       </div>
@@ -133,7 +133,7 @@ export default function ModeracionPage() {
             key={c.id}
             className={`p-5 rounded-2xl bg-white border transition-all ${
               c.isApproved && c.isPublic
-                ? 'border-[#E8E4EF] shadow-lla-soft'
+                ? 'border-[#E2E8F0] shadow-sm'
                 : 'border-amber-300 bg-amber-50/20 shadow-sm'
             }`}
           >
@@ -142,7 +142,7 @@ export default function ModeracionPage() {
               {/* Content info */}
               <div className="space-y-2 max-w-3xl">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-xs font-mono font-bold text-purple-900 bg-purple-50 px-2.5 py-0.5 rounded border border-purple-200">
+                  <span className="text-xs font-mono font-bold text-sky-900 bg-sky-50 px-2.5 py-0.5 rounded border border-sky-200">
                     {c.trackingCode}
                   </span>
                   <CategoryBadge categoryId={c.categoryId} size="sm" />
@@ -159,7 +159,7 @@ export default function ModeracionPage() {
                   )}
 
                   {c.isPublic ? (
-                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-purple-700 bg-purple-50 px-2 py-0.5 rounded">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-sky-800 bg-sky-50 px-2 py-0.5 rounded">
                       <Eye className="w-3 h-3" /> Público
                     </span>
                   ) : (
@@ -169,8 +169,8 @@ export default function ModeracionPage() {
                   )}
                 </div>
 
-                <h3 className="text-base font-bold text-[#17151D]">{c.title}</h3>
-                <p className="text-xs text-[#6B6875] leading-relaxed line-clamp-2">
+                <h3 className="text-base font-bold text-[#0F172A]">{c.title}</h3>
+                <p className="text-xs text-[#64748B] leading-relaxed line-clamp-2">
                   {c.description}
                 </p>
 

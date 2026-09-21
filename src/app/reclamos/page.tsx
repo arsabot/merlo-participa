@@ -65,22 +65,22 @@ function ReclamosContent() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E8E4EF]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E2E8F0]">
         <div>
-          <span className="text-xs font-bold uppercase tracking-wider text-[#391759]">
+          <span className="text-xs font-bold uppercase tracking-wider text-[#0B4F8A]">
             Participación Ciudadana
           </span>
-          <h1 className="text-3xl sm:text-4xl font-black text-[#17151D] tracking-tight mt-1">
+          <h1 className="text-3xl sm:text-4xl font-black text-[#0F172A] tracking-tight mt-1">
             Reclamos y Reportes Vecinales
           </h1>
-          <p className="text-xs sm:text-sm text-[#6B6875] mt-1">
+          <p className="text-xs sm:text-sm text-[#64748B] mt-1">
             Explorá los reportes comunitarios presentados en los diferentes barrios de Merlo.
           </p>
         </div>
 
         <Link
           href="/reclamos/nuevo"
-          className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-[#391759] hover:bg-[#240c3a] shadow-md shadow-[#391759]/25 transition-all self-start sm:self-auto"
+          className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-[#0B4F8A] hover:bg-[#072C4F] shadow-md shadow-sky-900/20 transition-all self-start sm:self-auto"
         >
           <PlusCircle className="w-4 h-4" />
           <span>Presentar nuevo reporte</span>
@@ -88,7 +88,7 @@ function ReclamosContent() {
       </div>
 
       {/* Filter & Search Bar */}
-      <div className="bg-white p-5 sm:p-6 rounded-3xl border border-[#E8E4EF] shadow-lla-soft space-y-4">
+      <div className="bg-white p-5 sm:p-6 rounded-3xl border border-[#E2E8F0] shadow-civic-soft space-y-4">
         
         {/* Search input */}
         <div className="relative">
@@ -98,7 +98,7 @@ function ReclamosContent() {
             placeholder="Buscar por palabra clave, dirección, código de seguimiento..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-12 pr-4 py-3.5 rounded-2xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#622899] focus:border-[#391759] bg-slate-50/50"
+            className="w-full pl-12 pr-4 py-3.5 rounded-2xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0284C7] focus:border-[#0B4F8A] bg-slate-50/50"
           />
           {search && (
             <button
@@ -121,7 +121,7 @@ function ReclamosContent() {
             <select
               value={selectedNeighborhood}
               onChange={(e) => setSelectedNeighborhood(e.target.value)}
-              className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
             >
               <option value="all">Todos los barrios</option>
               {NEIGHBORHOODS.map((n) => (
@@ -140,7 +140,7 @@ function ReclamosContent() {
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
             >
               <option value="all">Todas las categorías</option>
               {COMPLAINT_CATEGORIES.map((c) => (
@@ -159,7 +159,7 @@ function ReclamosContent() {
             <select
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}
-              className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
             >
               <option value="all">Todos los estados</option>
               {Object.entries(COMPLAINT_STATUS_CONFIG).map(([key, val]) => (
@@ -178,7 +178,7 @@ function ReclamosContent() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-sky-400"
             >
               <option value="recent">Más recientes</option>
               <option value="popular">Más apoyados por vecinos</option>
@@ -198,7 +198,7 @@ function ReclamosContent() {
             <button
               type="button"
               onClick={handleResetFilters}
-              className="inline-flex items-center gap-1 font-bold text-[#391759] hover:underline"
+              className="inline-flex items-center gap-1 font-bold text-[#0B4F8A] hover:underline"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>Restablecer filtros</span>
@@ -216,8 +216,8 @@ function ReclamosContent() {
           ))}
         </div>
       ) : (
-        <div className="p-12 text-center bg-white rounded-3xl border border-[#E8E4EF] shadow-sm space-y-4 max-w-lg mx-auto">
-          <div className="w-16 h-16 rounded-full bg-purple-50 text-[#391759] flex items-center justify-center mx-auto">
+        <div className="p-12 text-center bg-white rounded-3xl border border-[#E2E8F0] shadow-sm space-y-4 max-w-lg mx-auto">
+          <div className="w-16 h-16 rounded-full bg-sky-50 text-[#0B4F8A] flex items-center justify-center mx-auto">
             <Search className="w-8 h-8" />
           </div>
           <h3 className="text-lg font-bold text-slate-800">
@@ -229,13 +229,13 @@ function ReclamosContent() {
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-2">
             <button
               onClick={handleResetFilters}
-              className="px-4 py-2 rounded-xl text-xs font-bold text-[#240c3a] bg-[#F4ECF9] border border-purple-200"
+              className="px-4 py-2 rounded-xl text-xs font-bold text-[#072C4F] bg-sky-50 border border-sky-200"
             >
               Ver todos los reclamos
             </button>
             <Link
               href="/reclamos/nuevo"
-              className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#391759]"
+              className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#0B4F8A]"
             >
               Presentar un reclamo
             </Link>

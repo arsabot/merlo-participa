@@ -36,7 +36,7 @@ export const Timeline: React.FC<TimelineProps> = ({ updates, isAdminView = false
   );
 
   return (
-    <div className="relative pl-6 sm:pl-8 space-y-6 before:absolute before:top-3 before:bottom-3 before:left-2.5 sm:before:left-3.5 before:w-0.5 before:bg-purple-200">
+    <div className="relative pl-6 sm:pl-8 space-y-6 before:absolute before:top-3 before:bottom-3 before:left-2.5 sm:before:left-3.5 before:w-0.5 before:bg-sky-200">
       {sorted.map((update, index) => {
         const isLatest = index === 0;
 
@@ -46,8 +46,8 @@ export const Timeline: React.FC<TimelineProps> = ({ updates, isAdminView = false
             <div
               className={`absolute -left-6 sm:-left-8 top-1.5 w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center border-2 ${
                 isLatest
-                  ? 'bg-[#391759] border-white text-white shadow-md ring-4 ring-purple-100'
-                  : 'bg-white border-purple-400 text-purple-800'
+                  ? 'bg-[#0B4F8A] border-white text-white shadow-md ring-4 ring-sky-100'
+                  : 'bg-white border-sky-400 text-sky-800'
               }`}
             >
               {update.newStatus === 'resuelto' ? (
@@ -57,7 +57,7 @@ export const Timeline: React.FC<TimelineProps> = ({ updates, isAdminView = false
               ) : isLatest ? (
                 <CheckCircle2 className="w-3.5 h-3.5" />
               ) : (
-                <Clock className="w-3 h-3" />
+                <Clock className="w-3.5 h-3.5" />
               )}
             </div>
 
@@ -67,13 +67,13 @@ export const Timeline: React.FC<TimelineProps> = ({ updates, isAdminView = false
                 update.isInternalNote
                   ? 'bg-amber-50/60 border-amber-200'
                   : isLatest
-                  ? 'bg-purple-50/40 border-purple-200 shadow-sm'
+                  ? 'bg-sky-50/40 border-sky-200 shadow-sm'
                   : 'bg-white border-slate-200'
               }`}
             >
               <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <h4 className="text-sm sm:text-base font-bold text-[#17151D]">
+                  <h4 className="text-sm sm:text-base font-bold text-[#0F172A]">
                     {update.title}
                   </h4>
                   <StatusBadge status={update.newStatus} size="sm" />
@@ -90,13 +90,13 @@ export const Timeline: React.FC<TimelineProps> = ({ updates, isAdminView = false
                 </time>
               </div>
 
-              <p className="text-sm text-[#6B6875] leading-relaxed whitespace-pre-line">
+              <p className="text-sm text-[#64748B] leading-relaxed whitespace-pre-line">
                 {update.description}
               </p>
 
               <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                <span className="flex items-center gap-1 font-bold text-[#391759]">
-                  <UserCheck className="w-3.5 h-3.5 text-[#391759]" />
+                <span className="flex items-center gap-1 font-bold text-[#0B4F8A]">
+                  <UserCheck className="w-3.5 h-3.5 text-[#0B4F8A]" />
                   {update.authorName}
                 </span>
                 {isLatest && (

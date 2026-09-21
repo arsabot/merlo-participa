@@ -19,23 +19,23 @@ export default function MapaPage() {
     <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-6">
       
       {/* Page Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E8E4EF]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E2E8F0]">
         <div>
-          <span className="text-xs font-bold uppercase tracking-wider text-[#391759] flex items-center gap-1.5">
+          <span className="text-xs font-bold uppercase tracking-wider text-[#0B4F8A] flex items-center gap-1.5">
             <MapPin className="w-3.5 h-3.5" />
             <span>Geolocalización Barrial</span>
           </span>
-          <h1 className="text-3xl sm:text-4xl font-black text-[#17151D] tracking-tight mt-1">
+          <h1 className="text-3xl sm:text-4xl font-black text-[#0F172A] tracking-tight mt-1">
             Mapa de Reclamos e Incidencias en Merlo
           </h1>
-          <p className="text-xs sm:text-sm text-[#6B6875] mt-1">
+          <p className="text-xs sm:text-sm text-[#64748B] mt-1">
             Visualizá los reportes vecinales geolocalizados en San Antonio de Padua, Merlo Centro, Libertad, Pontevedra, Mariano Acosta y demás localidades.
           </p>
         </div>
 
         <Link
           href="/reclamos/nuevo"
-          className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-[#391759] hover:bg-[#240c3a] shadow-md shadow-[#391759]/25 transition-all self-start sm:self-auto"
+          className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-[#0B4F8A] hover:bg-[#072C4F] shadow-md shadow-sky-900/20 transition-all self-start sm:self-auto"
         >
           <PlusCircle className="w-4 h-4" />
           <span>Sumar un reporte al mapa</span>
@@ -46,8 +46,8 @@ export default function MapaPage() {
       <MerloPublicMap complaints={complaints} />
 
       {/* Map Privacy Notice */}
-      <div className="p-4 rounded-2xl bg-white border border-[#E8E4EF] flex items-start gap-2.5 text-xs text-slate-500 shadow-sm">
-        <Info className="w-4 h-4 text-[#391759] shrink-0 mt-0.5" />
+      <div className="p-4 rounded-2xl bg-white border border-[#E2E8F0] flex items-start gap-2.5 text-xs text-slate-500 shadow-sm">
+        <Info className="w-4 h-4 text-[#0B4F8A] shrink-0 mt-0.5" />
         <span>
           <strong>Protección de datos:</strong> Para salvaguardar la intimidad de los vecinos, los marcadores representan ubicaciones referenciales de las problemáticas en la vía pública y nunca exponen domicilios particulares ni datos de identidad sin consentimiento expreso.
         </span>

@@ -35,11 +35,11 @@ export const AdminSidebar: React.FC = () => {
   ];
 
   return (
-    <aside className="w-full lg:w-64 bg-white border-b lg:border-b-0 lg:border-r border-[#E8E4EF] p-5 shrink-0 flex flex-col justify-between">
+    <aside className="w-full lg:w-64 bg-white border-b lg:border-b-0 lg:border-r border-[#E2E8F0] p-5 shrink-0 flex flex-col justify-between">
       <div className="space-y-6">
         {/* Brand Header */}
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-xl bg-[#391759] flex items-center justify-center shadow-sm shrink-0">
+          <div className="h-10 w-10 rounded-xl bg-[#0B4F8A] flex items-center justify-center shadow-sm shrink-0">
             <img
               src="/merlo-logo.svg"
               alt="Merlo Participa"
@@ -47,10 +47,10 @@ export const AdminSidebar: React.FC = () => {
             />
           </div>
           <div>
-            <span className="font-extrabold text-sm text-[#17151D] block leading-tight">
+            <span className="font-extrabold text-sm text-[#0F172A] block leading-tight">
               Gestión Vecinal
             </span>
-            <span className="text-[10px] font-bold text-[#391759] uppercase tracking-wider">
+            <span className="text-[10px] font-bold text-[#0B4F8A] uppercase tracking-wider">
               Merlo Participa
             </span>
           </div>
@@ -58,14 +58,14 @@ export const AdminSidebar: React.FC = () => {
 
         {/* User Role Card */}
         {session && (
-          <div className="p-3 bg-[#F8F7FC] rounded-2xl border border-[#E8E4EF] space-y-1">
+          <div className="p-3 bg-[#F8FAFC] rounded-2xl border border-[#E2E8F0] space-y-1">
             <div className="flex items-center gap-2">
-              <UserCheck className="w-3.5 h-3.5 text-[#391759]" />
-              <span className="text-xs font-bold text-[#17151D]">
+              <UserCheck className="w-3.5 h-3.5 text-[#0B4F8A]" />
+              <span className="text-xs font-bold text-[#0F172A]">
                 {session.role === 'admin' ? 'Administrador Comunitario' : 'Gestor Barrial'}
               </span>
             </div>
-            <p className="text-[11px] text-[#6B6875] truncate font-medium">
+            <p className="text-[11px] text-[#64748B] truncate font-medium">
               {session.email}
             </p>
           </div>
@@ -82,8 +82,8 @@ export const AdminSidebar: React.FC = () => {
                 href={link.href}
                 className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
                   isActive
-                    ? 'bg-[#391759] text-white shadow-sm'
-                    : 'text-slate-600 hover:bg-[#F4ECF9] hover:text-[#240c3a]'
+                    ? 'bg-[#0B4F8A] text-white shadow-sm'
+                    : 'text-slate-600 hover:bg-[#F0F7FF] hover:text-[#072C4F]'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -100,7 +100,7 @@ export const AdminSidebar: React.FC = () => {
           href="/"
           className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-100 transition-colors"
         >
-          <ArrowLeft className="w-4 h-4 text-purple-600" />
+          <ArrowLeft className="w-4 h-4 text-sky-600" />
           <span>Volver al Portal Público</span>
         </Link>
 

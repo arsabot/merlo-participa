@@ -17,12 +17,12 @@ export default async function Image() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          backgroundColor: '#240C3A',
-          backgroundImage: 'radial-gradient(circle at 90% 15%, #4A1D75 0%, #240C3A 60%, #150622 100%)',
+          backgroundColor: '#072C4F',
+          backgroundImage: 'radial-gradient(circle at 90% 15%, #0B4F8A 0%, #072C4F 60%, #03182B 100%)',
           padding: '60px 70px',
           fontFamily: 'sans-serif',
           color: 'white',
-          border: '12px solid #391759',
+          border: '12px solid #0B4F8A',
           boxSizing: 'border-box',
         }}
       >
@@ -44,7 +44,7 @@ export default async function Image() {
                 width: '12px',
                 height: '12px',
                 borderRadius: '50%',
-                backgroundColor: '#A855F7',
+                backgroundColor: '#38BDF8',
               }}
             />
             <span
@@ -53,7 +53,7 @@ export default async function Image() {
                 fontWeight: 800,
                 letterSpacing: '2px',
                 textTransform: 'uppercase',
-                color: '#E9D5FF',
+                color: '#E0F2FE',
               }}
             >
               Portal Vecinal Independiente
@@ -63,13 +63,13 @@ export default async function Image() {
           <div
             style={{
               display: 'flex',
-              backgroundColor: '#391759',
+              backgroundColor: '#0B4F8A',
               borderRadius: '16px',
               padding: '12px 24px',
               fontSize: '16px',
               fontWeight: 700,
-              color: '#F3E8FF',
-              border: '1px solid rgba(168, 85, 247, 0.4)',
+              color: '#F0F9FF',
+              border: '1px solid rgba(56, 189, 248, 0.4)',
             }}
           >
             Comunidad de Merlo
@@ -89,7 +89,7 @@ export default async function Image() {
                 color: '#FFFFFF',
               }}
             >
-              Merlo<span style={{ color: '#C084FC' }}>Participa</span>
+              Merlo<span style={{ color: '#38BDF8' }}>Participa</span>
             </h1>
           </div>
           
@@ -97,7 +97,7 @@ export default async function Image() {
             style={{
               fontSize: '28px',
               fontWeight: 500,
-              color: '#D8B4FE',
+              color: '#BAE6FD',
               margin: 0,
               maxWidth: '920px',
               lineHeight: 1.35,
@@ -113,7 +113,7 @@ export default async function Image() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            borderTop: '1px solid rgba(216, 180, 254, 0.2)',
+            borderTop: '1px solid rgba(186, 230, 253, 0.2)',
             paddingTop: '28px',
           }}
         >
@@ -122,13 +122,13 @@ export default async function Image() {
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                backgroundColor: 'rgba(57, 23, 89, 0.7)',
+                backgroundColor: 'rgba(11, 79, 138, 0.7)',
                 padding: '10px 18px',
                 borderRadius: '12px',
                 fontSize: '17px',
                 fontWeight: 700,
-                color: '#FAF5FF',
-                border: '1px solid rgba(168, 85, 247, 0.3)',
+                color: '#F0F9FF',
+                border: '1px solid rgba(56, 189, 248, 0.3)',
               }}
             >
               📢 Reclamos Ciudadanos
@@ -138,13 +138,13 @@ export default async function Image() {
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                backgroundColor: 'rgba(57, 23, 89, 0.7)',
+                backgroundColor: 'rgba(11, 79, 138, 0.7)',
                 padding: '10px 18px',
                 borderRadius: '12px',
                 fontSize: '17px',
                 fontWeight: 700,
-                color: '#FAF5FF',
-                border: '1px solid rgba(168, 85, 247, 0.3)',
+                color: '#F0F9FF',
+                border: '1px solid rgba(56, 189, 248, 0.3)',
               }}
             >
               🗺️ Mapa Territorial
@@ -154,13 +154,13 @@ export default async function Image() {
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                backgroundColor: 'rgba(57, 23, 89, 0.7)',
+                backgroundColor: 'rgba(11, 79, 138, 0.7)',
                 padding: '10px 18px',
                 borderRadius: '12px',
                 fontSize: '17px',
                 fontWeight: 700,
-                color: '#FAF5FF',
-                border: '1px solid rgba(168, 85, 247, 0.3)',
+                color: '#F0F9FF',
+                border: '1px solid rgba(56, 189, 248, 0.3)',
               }}
             >
               🤝 Impulsado por Vecinos
@@ -171,7 +171,7 @@ export default async function Image() {
             style={{
               fontSize: '20px',
               fontWeight: 800,
-              color: '#F3E8FF',
+              color: '#E0F2FE',
               letterSpacing: '0.5px',
             }}
           >

@@ -37,15 +37,15 @@ export default function AdminDashboardPage() {
     <div className="space-y-8 max-w-7xl mx-auto">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E8E4EF]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E2E8F0]">
         <div>
-          <span className="text-xs font-bold uppercase tracking-wider text-[#391759]">
+          <span className="text-xs font-bold uppercase tracking-wider text-[#0B4F8A]">
             Panel de Control
           </span>
-          <h1 className="text-2xl sm:text-3xl font-black text-[#17151D] tracking-tight mt-0.5">
+          <h1 className="text-2xl sm:text-3xl font-black text-[#0F172A] tracking-tight mt-0.5">
             Métricas Operativas & Gestión Territorial
           </h1>
-          <p className="text-xs sm:text-sm text-[#6B6875]">
+          <p className="text-xs sm:text-sm text-[#64748B]">
             Resumen estadístico de problemáticas ciudadanas en el partido de Merlo.
           </p>
         </div>
@@ -54,7 +54,7 @@ export default function AdminDashboardPage() {
           <ExportCsvButton complaints={allComplaints} />
           <Link
             href="/admin/reclamos"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#391759] hover:bg-[#240c3a] shadow-sm transition-colors"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#0B4F8A] hover:bg-[#072C4F] shadow-sm transition-colors"
           >
             <span>Gestionar Reclamos</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -66,7 +66,7 @@ export default function AdminDashboardPage() {
       {stats && (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           
-          <div className="p-5 rounded-2xl bg-white border border-[#E8E4EF] shadow-lla-soft space-y-2">
+          <div className="p-5 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm space-y-2">
             <div className="flex items-center justify-between text-slate-500">
               <span className="text-xs font-bold uppercase tracking-wider">Total Recibidos</span>
               <FileText className="w-4 h-4 text-slate-400" />
@@ -75,7 +75,7 @@ export default function AdminDashboardPage() {
             <p className="text-[11px] text-slate-500">Solicitudes en el portal</p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-white border border-[#E8E4EF] shadow-lla-soft space-y-2">
+          <div className="p-5 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm space-y-2">
             <div className="flex items-center justify-between text-amber-700">
               <span className="text-xs font-bold uppercase tracking-wider">En Evaluación</span>
               <Clock className="w-4 h-4 text-amber-600" />
@@ -86,18 +86,18 @@ export default function AdminDashboardPage() {
             <p className="text-[11px] text-amber-700">Pendientes de validar</p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-white border border-[#E8E4EF] shadow-lla-soft space-y-2">
-            <div className="flex items-center justify-between text-[#391759]">
+          <div className="p-5 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm space-y-2">
+            <div className="flex items-center justify-between text-[#0B4F8A]">
               <span className="text-xs font-bold uppercase tracking-wider">En Gestión Activa</span>
-              <Send className="w-4 h-4 text-[#391759]" />
+              <Send className="w-4 h-4 text-[#0B4F8A]" />
             </div>
-            <div className="text-3xl font-black text-[#240c3a]">
+            <div className="text-3xl font-black text-[#0B4F8A]">
               {stats.validados + stats.derivados + stats.enSeguimiento}
             </div>
-            <p className="text-[11px] text-[#391759]">Con proyecto o trámite</p>
+            <p className="text-[11px] text-[#0B4F8A]">Con proyecto o trámite</p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-white border border-[#E8E4EF] shadow-lla-soft space-y-2">
+          <div className="p-5 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm space-y-2">
             <div className="flex items-center justify-between text-emerald-700">
               <span className="text-xs font-bold uppercase tracking-wider">Resueltos</span>
               <ShieldCheck className="w-4 h-4 text-emerald-600" />
@@ -113,10 +113,10 @@ export default function AdminDashboardPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         {/* Category Breakdown */}
-        <div className="lg:col-span-6 bg-white p-6 rounded-3xl border border-[#E8E4EF] shadow-lla-soft space-y-4">
+        <div className="lg:col-span-6 bg-white p-6 rounded-3xl border border-[#E2E8F0] shadow-sm space-y-4">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-            <h3 className="text-sm font-bold text-[#17151D] flex items-center gap-2">
-              <BarChart3 className="w-4 h-4 text-[#391759]" />
+            <h3 className="text-sm font-bold text-[#0F172A] flex items-center gap-2">
+              <BarChart3 className="w-4 h-4 text-[#0B4F8A]" />
               <span>Distribución por Categoría de Problema</span>
             </h3>
             <span className="text-xs text-slate-500 font-medium">Top demandas</span>
@@ -136,7 +136,7 @@ export default function AdminDashboardPage() {
                       className="h-full rounded-full transition-all duration-500"
                       style={{
                         width: `${percentage}%`,
-                        backgroundColor: cat.color || '#391759',
+                        backgroundColor: cat.color || '#0B4F8A',
                       }}
                     />
                   </div>
@@ -147,10 +147,10 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* Neighborhood Breakdown */}
-        <div className="lg:col-span-6 bg-white p-6 rounded-3xl border border-[#E8E4EF] shadow-lla-soft space-y-4">
+        <div className="lg:col-span-6 bg-white p-6 rounded-3xl border border-[#E2E8F0] shadow-sm space-y-4">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-            <h3 className="text-sm font-bold text-[#17151D] flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-[#391759]" />
+            <h3 className="text-sm font-bold text-[#0F172A] flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-[#0B4F8A]" />
               <span>Concentración por Barrio de Merlo</span>
             </h3>
             <span className="text-xs text-slate-500 font-medium">Reclamos</span>
@@ -163,11 +163,11 @@ export default function AdminDashboardPage() {
                 <div key={idx} className="space-y-1">
                   <div className="flex items-center justify-between text-xs font-medium text-slate-700">
                     <span>{n.neighborhoodName}</span>
-                    <span className="font-bold text-[#240c3a]">{n.count} reclamos</span>
+                    <span className="font-bold text-[#0B4F8A]">{n.count} reclamos</span>
                   </div>
                   <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
                     <div
-                      className="h-full rounded-full bg-gradient-to-r from-[#391759] to-[#622899] transition-all duration-500"
+                      className="h-full rounded-full bg-gradient-to-r from-[#0B4F8A] to-[#0284C7] transition-all duration-500"
                       style={{ width: `${percentage}%` }}
                     />
                   </div>
@@ -180,14 +180,14 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* Recent Complaints Table Preview */}
-      <div className="bg-white p-6 rounded-3xl border border-[#E8E4EF] shadow-lla-soft space-y-4">
+      <div className="bg-white p-6 rounded-3xl border border-[#E2E8F0] shadow-sm space-y-4">
         <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-          <h3 className="text-base font-bold text-[#17151D]">
+          <h3 className="text-base font-bold text-[#0F172A]">
             Últimos Reportes Ingresados al Sistema
           </h3>
           <Link
             href="/admin/reclamos"
-            className="text-xs font-bold text-[#391759] hover:underline flex items-center gap-1"
+            className="text-xs font-bold text-[#0B4F8A] hover:underline flex items-center gap-1"
           >
             <span>Ver todos los reclamos</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -210,7 +210,7 @@ export default function AdminDashboardPage() {
             <tbody className="divide-y divide-slate-100">
               {allComplaints.slice(0, 5).map((c) => (
                 <tr key={c.id} className="hover:bg-slate-50/80 transition-colors">
-                  <td className="py-3.5 font-mono font-bold text-purple-900">{c.trackingCode}</td>
+                  <td className="py-3.5 font-mono font-bold text-sky-900">{c.trackingCode}</td>
                   <td className="py-3.5 font-semibold text-slate-900 max-w-xs truncate">{c.title}</td>
                   <td className="py-3.5 text-slate-600">{c.neighborhood?.name}</td>
                   <td className="py-3.5 text-slate-600">
@@ -224,7 +224,7 @@ export default function AdminDashboardPage() {
                   <td className="py-3.5 text-right">
                     <Link
                       href={`/admin/reclamos?id=${c.id}`}
-                      className="inline-flex items-center gap-1 font-bold text-purple-700 hover:text-purple-900"
+                      className="inline-flex items-center gap-1 font-bold text-[#0B4F8A] hover:text-[#072C4F]"
                     >
                       <span>Gestionar</span>
                     </Link>

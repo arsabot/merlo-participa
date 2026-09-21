@@ -55,7 +55,7 @@ export const CategoryBadge: React.FC<CategoryBadgeProps> = ({
     name: categoryName || 'Categoría',
     slug: 'categoria',
     icon: 'HelpCircle',
-    color: '#391759',
+    color: '#0B4F8A',
     description: '',
   };
 

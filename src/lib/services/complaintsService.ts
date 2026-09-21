@@ -390,7 +390,7 @@ function enrichComplaint(c: Complaint): Complaint {
     name: 'General',
     slug: 'general',
     icon: 'AlertCircle',
-    color: '#391759',
+    color: '#0B4F8A',
     description: '',
   };
   const neighborhood = NEIGHBORHOODS.find((n) => n.id === c.neighborhoodId) || {

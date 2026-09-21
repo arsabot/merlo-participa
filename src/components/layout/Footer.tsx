@@ -12,7 +12,7 @@ import { NEIGHBORHOODS } from '@/lib/constants';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#17151D] text-slate-300 pt-16 pb-12 mt-auto border-t border-purple-950">
+    <footer className="bg-[#0F172A] text-slate-300 pt-16 pb-12 mt-auto border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Grid */}
@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
           {/* Brand & Mission */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3.5">
-              <div className="h-12 w-12 rounded-2xl bg-[#391759] border border-purple-800/60 flex items-center justify-center shadow-md p-1.5">
+              <div className="h-12 w-12 rounded-2xl bg-[#0B4F8A] border border-sky-600/40 flex items-center justify-center shadow-md p-1.5">
                 <img
                   src="/icon.svg"
                   alt="Merlo Participa"
@@ -30,9 +30,9 @@ export const Footer: React.FC = () => {
               </div>
               <div>
                 <span className="text-white font-black text-xl tracking-tight leading-none block">
-                  Merlo<span className="text-[#8B5CF6]">Participa</span>
+                  Merlo<span className="text-[#38BDF8]">Participa</span>
                 </span>
-                <p className="text-[11px] text-purple-300 font-bold uppercase tracking-wider mt-1">
+                <p className="text-[11px] text-sky-300 font-bold uppercase tracking-wider mt-1">
                   Portal Vecinal Comunitario
                 </p>
               </div>
@@ -42,7 +42,7 @@ export const Footer: React.FC = () => {
               Herramienta digital de participación ciudadana y escucha vecinal. Conectamos los reclamos, propuestas y necesidades de cada barrio con soluciones concretas y seguimiento transparente.
             </p>
 
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple-950/60 border border-purple-800/40 text-purple-300 text-xs">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-sky-950/60 border border-sky-800/40 text-sky-200 text-xs">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span>Plataforma activa y abierta a todos los vecinos de Merlo</span>
             </div>
@@ -51,7 +51,7 @@ export const Footer: React.FC = () => {
           {/* Quick Links */}
           <div className="space-y-3">
             <h4 className="text-white font-semibold text-sm tracking-wider uppercase flex items-center gap-1.5">
-              <HeartHandshake className="w-4 h-4 text-[#8B5CF6]" />
+              <HeartHandshake className="w-4 h-4 text-[#38BDF8]" />
               <span>Participación</span>
             </h4>
             <ul className="space-y-2 text-sm">
@@ -86,7 +86,7 @@ export const Footer: React.FC = () => {
           {/* Information & Legal */}
           <div className="space-y-3">
             <h4 className="text-white font-semibold text-sm tracking-wider uppercase flex items-center gap-1.5">
-              <FileText className="w-4 h-4 text-[#8B5CF6]" />
+              <FileText className="w-4 h-4 text-[#38BDF8]" />
               <span>Transparencia</span>
             </h4>
             <ul className="space-y-2 text-sm">
@@ -111,7 +111,7 @@ export const Footer: React.FC = () => {
           {/* Neighborhoods list */}
           <div className="space-y-3">
             <h4 className="text-white font-semibold text-sm tracking-wider uppercase flex items-center gap-1.5">
-              <MapPin className="w-4 h-4 text-[#8B5CF6]" />
+              <MapPin className="w-4 h-4 text-[#38BDF8]" />
               <span>Barrios de Merlo</span>
             </h4>
             <div className="flex flex-wrap gap-1.5 text-xs text-slate-400">
@@ -119,7 +119,7 @@ export const Footer: React.FC = () => {
                 <Link
                   key={n.id}
                   href={`/reclamos?barrio=${n.id}`}
-                  className="px-2 py-1 rounded bg-slate-900/80 hover:bg-purple-950 hover:text-purple-200 border border-slate-800 transition-colors"
+                  className="px-2 py-1 rounded bg-slate-900/80 hover:bg-sky-950 hover:text-sky-200 border border-slate-800 transition-colors"
                 >
                   {n.name}
                 </Link>
@@ -130,7 +130,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Mandatory Legal & Emergency Disclaimer */}
-        <div className="mt-8 p-5 rounded-2xl bg-purple-950/30 border border-purple-900/50 space-y-2 text-xs text-slate-400 leading-relaxed">
+        <div className="mt-8 p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-2 text-xs text-slate-400 leading-relaxed">
           <div className="flex items-center gap-2 text-amber-400 font-semibold">
             <ShieldAlert className="w-4 h-4" />
             <span>Aviso Legal y de Emergencias Importante</span>

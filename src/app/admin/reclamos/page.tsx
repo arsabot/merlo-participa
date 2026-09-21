@@ -70,15 +70,15 @@ function AdminReclamosContent() {
     <div className="space-y-6 max-w-7xl mx-auto">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E8E4EF]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E2E8F0]">
         <div>
-          <span className="text-xs font-bold uppercase tracking-wider text-[#391759]">
+          <span className="text-xs font-bold uppercase tracking-wider text-[#0B4F8A]">
             Operaciones Territoriales
           </span>
-          <h1 className="text-2xl sm:text-3xl font-black text-[#17151D] tracking-tight mt-0.5">
+          <h1 className="text-2xl sm:text-3xl font-black text-[#0F172A] tracking-tight mt-0.5">
             Gestión Integral de Reclamos
           </h1>
-          <p className="text-xs sm:text-sm text-[#6B6875]">
+          <p className="text-xs sm:text-sm text-[#64748B]">
             Administrá estados, redactá informes de gestión, agregá notas internas y consultá contactos vecinales.
           </p>
         </div>
@@ -89,7 +89,7 @@ function AdminReclamosContent() {
       </div>
 
       {/* Filters & Search */}
-      <div className="bg-white p-4 sm:p-5 rounded-2xl border border-[#E8E4EF] shadow-lla-soft space-y-3">
+      <div className="bg-white p-4 sm:p-5 rounded-2xl border border-[#E2E8F0] shadow-sm space-y-3">
         <div className="flex flex-col lg:flex-row gap-3">
           <div className="relative flex-1">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -98,7 +98,7 @@ function AdminReclamosContent() {
               placeholder="Buscar por código, título, nombre del vecino, email..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-purple-400 focus:outline-none"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-sky-400 focus:outline-none"
             />
           </div>
 
@@ -106,7 +106,7 @@ function AdminReclamosContent() {
             <select
               value={selectedNeighborhood}
               onChange={(e) => setSelectedNeighborhood(e.target.value)}
-              className="px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-white focus:ring-2 focus:ring-purple-400 focus:outline-none"
+              className="px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-white focus:ring-2 focus:ring-sky-400 focus:outline-none"
             >
               <option value="all">Todos los Barrios</option>
               {NEIGHBORHOODS.map((n) => (
@@ -119,7 +119,7 @@ function AdminReclamosContent() {
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-white focus:ring-2 focus:ring-purple-400 focus:outline-none"
+              className="px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-white focus:ring-2 focus:ring-sky-400 focus:outline-none"
             >
               <option value="all">Todas las Categorías</option>
               {COMPLAINT_CATEGORIES.map((c) => (
@@ -132,7 +132,7 @@ function AdminReclamosContent() {
             <select
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}
-              className="px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-white focus:ring-2 focus:ring-purple-400 focus:outline-none"
+              className="px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-white focus:ring-2 focus:ring-sky-400 focus:outline-none"
             >
               <option value="all">Todos los Estados</option>
               {Object.entries(COMPLAINT_STATUS_CONFIG).map(([key, val]) => (
@@ -149,7 +149,7 @@ function AdminReclamosContent() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         {/* Table View */}
-        <div className={`${selectedComplaint ? 'lg:col-span-7' : 'lg:col-span-12'} bg-white rounded-2xl border border-[#E8E4EF] shadow-lla-soft overflow-hidden transition-all`}>
+        <div className={`${selectedComplaint ? 'lg:col-span-7' : 'lg:col-span-12'} bg-white rounded-2xl border border-[#E2E8F0] shadow-sm overflow-hidden transition-all`}>
           <div className="p-4 border-b border-slate-100 flex items-center justify-between text-xs font-bold text-slate-600">
             <span>Listado de Reclamos ({complaints.length})</span>
             <span className="text-slate-400">Hacé clic en una fila para gestionar</span>
@@ -174,14 +174,14 @@ function AdminReclamosContent() {
                       key={c.id}
                       onClick={() => setSelectedComplaint(c)}
                       className={`cursor-pointer transition-colors ${
-                        isSelected ? 'bg-purple-50/80 border-l-4 border-l-[#391759]' : 'hover:bg-slate-50'
+                        isSelected ? 'bg-sky-50/80 border-l-4 border-l-[#0B4F8A]' : 'hover:bg-slate-50'
                       }`}
                     >
-                      <td className="p-3.5 font-mono font-bold text-[#240c3a] whitespace-nowrap">
+                      <td className="p-3.5 font-mono font-bold text-[#0F172A] whitespace-nowrap">
                         {c.trackingCode}
                       </td>
                       <td className="p-3.5 max-w-xs">
-                        <span className="font-bold text-[#17151D] block truncate">{c.title}</span>
+                        <span className="font-bold text-[#0F172A] block truncate">{c.title}</span>
                         <span className="text-[11px] text-slate-500">{c.neighborhood?.name}</span>
                       </td>
                       <td className="p-3.5 text-slate-700 whitespace-nowrap">
@@ -199,7 +199,7 @@ function AdminReclamosContent() {
                             setSelectedComplaint(c);
                             setIsStatusModalOpen(true);
                           }}
-                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold text-white bg-[#391759] hover:bg-[#240c3a] transition-colors"
+                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold text-white bg-[#0B4F8A] hover:bg-[#072C4F] transition-colors"
                         >
                           <Edit3 className="w-3 h-3" />
                           <span>Actualizar</span>
@@ -215,11 +215,11 @@ function AdminReclamosContent() {
 
         {/* Selected Complaint Detail Drawer */}
         {selectedComplaint && (
-          <div className="lg:col-span-5 bg-white rounded-2xl border border-[#E8E4EF] p-5 sm:p-6 shadow-lla-card space-y-6 animate-fade-in max-h-[850px] overflow-y-auto">
+          <div className="lg:col-span-5 bg-white rounded-2xl border border-[#E2E8F0] p-5 sm:p-6 shadow-sm space-y-6 animate-fade-in max-h-[850px] overflow-y-auto">
             
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-mono font-bold text-purple-900 bg-purple-50 px-2.5 py-1 rounded border border-purple-200">
+                <span className="text-xs font-mono font-bold text-sky-900 bg-sky-50 px-2.5 py-1 rounded border border-sky-200">
                   {selectedComplaint.trackingCode}
                 </span>
                 <StatusBadge status={selectedComplaint.status} size="sm" />
@@ -235,18 +235,18 @@ function AdminReclamosContent() {
 
             {/* Title & Description */}
             <div className="space-y-2">
-              <h3 className="text-base font-bold text-[#17151D]">
+              <h3 className="text-base font-bold text-[#0F172A]">
                 {selectedComplaint.title}
               </h3>
-              <p className="text-xs text-[#6B6875] leading-relaxed whitespace-pre-line">
+              <p className="text-xs text-[#64748B] leading-relaxed whitespace-pre-line">
                 {selectedComplaint.description}
               </p>
             </div>
 
             {/* Private Contact Box for Team */}
-            <div className="p-4 rounded-xl bg-purple-50/60 border border-purple-200 space-y-2 text-xs">
-              <span className="font-bold text-[#240c3a] flex items-center gap-1.5 uppercase text-[10px] tracking-wider">
-                <Lock className="w-3.5 h-3.5 text-[#391759]" />
+            <div className="p-4 rounded-xl bg-sky-50/60 border border-sky-200 space-y-2 text-xs">
+              <span className="font-bold text-[#0B4F8A] flex items-center gap-1.5 uppercase text-[10px] tracking-wider">
+                <Lock className="w-3.5 h-3.5 text-[#0B4F8A]" />
                 <span>Datos de Contacto Privados (Solo Equipo)</span>
               </span>
               <div className="space-y-1 text-slate-700">
@@ -299,7 +299,7 @@ function AdminReclamosContent() {
               <button
                 type="button"
                 onClick={() => setIsStatusModalOpen(true)}
-                className="w-full py-3 rounded-xl font-bold text-xs text-white bg-[#391759] hover:bg-[#240c3a] shadow-md transition-colors flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-xl font-bold text-xs text-white bg-[#0B4F8A] hover:bg-[#072C4F] shadow-md transition-colors flex items-center justify-center gap-2"
               >
                 <Edit3 className="w-4 h-4" />
                 <span>Actualizar Estado o Añadir Nota Interna</span>

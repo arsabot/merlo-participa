@@ -1,24 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 180" fill="none">
   <defs>
     <linearGradient id="merlo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#4A1D75" />
-      <stop offset="100%" stop-color="#240C3A" />
+      <stop offset="0%" stop-color="#0B4F8A" />
+      <stop offset="100%" stop-color="#072C4F" />
     </linearGradient>
     <linearGradient id="accent-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#C084FC" />
-      <stop offset="100%" stop-color="#8B5CF6" />
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#0284C7" />
     </linearGradient>
   </defs>
   
   <!-- Icon Badge (Pin + Community M) -->
   <g transform="translate(15, 15)">
     <rect width="150" height="150" rx="36" fill="url(#merlo-grad)" />
-    <rect width="144" height="144" x="3" y="3" rx="33" stroke="#8B5CF6" stroke-width="2.5" opacity="0.4" />
+    <rect width="144" height="144" x="3" y="3" rx="33" stroke="#38BDF8" stroke-width="2.5" opacity="0.4" />
     
     <!-- Stylized Map Pin & Community M -->
     <path d="M75 32 C54 32 38 48 38 69 C38 96 75 124 75 124 C75 124 112 96 112 69 C112 48 96 32 75 32 Z" fill="white" />
     <!-- Inner M Cutout & Center Dot -->
-    <circle cx="75" cy="65" r="14" fill="#391759" />
+    <circle cx="75" cy="65" r="14" fill="#0B4F8A" />
     <path d="M57 90 L67 60 L75 74 L83 60 L93 90" stroke="url(#accent-grad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
   </g>
 
@@ -26,13 +26,13 @@
   <g transform="translate(185, 38)">
     <!-- Main Title: Merlo Participa -->
     <text x="0" y="58" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="52" letter-spacing="-1" fill="#FFFFFF">
-      Merlo<tspan fill="#C084FC">Participa</tspan>
+      Merlo<tspan fill="#38BDF8">Participa</tspan>
     </text>
     
     <!-- Subtitle: Portal Vecinal Independiente -->
     <g transform="translate(2, 85)">
-      <rect width="270" height="24" rx="6" fill="#4A1D75" opacity="0.8" />
-      <text x="10" y="16" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="11.5" letter-spacing="1.5" fill="#E9D5FF" text-transform="uppercase">
+      <rect width="270" height="24" rx="6" fill="#0B4F8A" opacity="0.9" />
+      <text x="10" y="16" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="11.5" letter-spacing="1.5" fill="#E0F2FE">
         PORTAL VECINAL INDEPENDIENTE
       </text>
     </g>

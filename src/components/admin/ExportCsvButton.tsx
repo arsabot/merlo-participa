@@ -69,10 +69,10 @@ export const ExportCsvButton: React.FC<ExportCsvButtonProps> = ({ complaints, cl
     <button
       onClick={handleExport}
       type="button"
-      className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:border-purple-300 shadow-sm transition-colors ${className}`}
+      className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:border-sky-300 shadow-sm transition-colors ${className}`}
       title="Exportar listado a archivo CSV / Excel"
     >
-      <Download className="w-3.5 h-3.5 text-[#391759]" />
+      <Download className="w-3.5 h-3.5 text-[#0B4F8A]" />
       <span>Exportar CSV</span>
     </button>
   );

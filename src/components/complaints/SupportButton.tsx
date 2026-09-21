@@ -69,8 +69,8 @@ export const SupportButton: React.FC<SupportButtonProps> = ({
           hasSupported
             ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 cursor-default'
             : variant === 'solid'
-            ? 'bg-[#391759] text-white hover:bg-[#240c3a] shadow-sm active:scale-95'
-            : 'bg-white text-[#391759] border border-purple-200 hover:border-[#391759] hover:bg-purple-50 active:scale-95'
+            ? 'bg-[#0B4F8A] text-white hover:bg-[#072C4F] shadow-sm active:scale-95'
+            : 'bg-white text-[#0B4F8A] border border-sky-200 hover:border-[#0B4F8A] hover:bg-sky-50 active:scale-95'
         } ${className}`}
         title={hasSupported ? 'Ya has apoyado este reporte' : 'Apoyar este reclamo barrial'}
       >

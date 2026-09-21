@@ -46,7 +46,7 @@ export default function ComplaintDetailPage({ params }: { params: Promise<{ id: 
         </p>
         <Link
           href="/reclamos"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#391759] text-white text-xs font-bold"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0B4F8A] text-white text-xs font-bold"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Volver al directorio de reclamos</span>
@@ -79,10 +79,10 @@ export default function ComplaintDetailPage({ params }: { params: Promise<{ id: 
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       
       {/* Top breadcrumb navigation */}
-      <div className="flex items-center justify-between gap-4 pb-4 border-b border-[#E8E4EF]">
+      <div className="flex items-center justify-between gap-4 pb-4 border-b border-[#E2E8F0]">
         <Link
           href="/reclamos"
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#391759] hover:text-[#240c3a] transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0B4F8A] hover:text-[#072C4F] transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Volver a todos los reclamos</span>
@@ -118,7 +118,7 @@ export default function ComplaintDetailPage({ params }: { params: Promise<{ id: 
         {/* Left Column: Complaint Core Information */}
         <div className="lg:col-span-7 space-y-6">
           
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E8E4EF] shadow-lla-soft space-y-6">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E2E8F0] shadow-civic-soft space-y-6">
             
             {/* Badges & Tracking Code Header */}
             <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100">
@@ -128,13 +128,13 @@ export default function ComplaintDetailPage({ params }: { params: Promise<{ id: 
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="text-xs font-mono font-bold text-purple-900 bg-purple-50 px-2.5 py-1 rounded-lg border border-purple-200">
+                <span className="text-xs font-mono font-bold text-sky-900 bg-sky-50 px-2.5 py-1 rounded-lg border border-sky-200">
                   {complaint.trackingCode}
                 </span>
                 <button
                   type="button"
                   onClick={handleCopyCode}
-                  className="p-1.5 text-slate-400 hover:text-purple-700 hover:bg-purple-50 rounded-lg transition-colors"
+                  className="p-1.5 text-slate-400 hover:text-sky-700 hover:bg-sky-50 rounded-lg transition-colors"
                   title="Copiar código de seguimiento"
                 >
                   {copiedCode ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
@@ -144,18 +144,18 @@ export default function ComplaintDetailPage({ params }: { params: Promise<{ id: 
 
             {/* Title & Description */}
             <div className="space-y-3">
-              <h1 className="text-2xl sm:text-3xl font-black text-[#17151D] tracking-tight leading-snug">
+              <h1 className="text-2xl sm:text-3xl font-black text-[#0F172A] tracking-tight leading-snug">
                 {complaint.title}
               </h1>
-              <p className="text-sm text-[#6B6875] leading-relaxed whitespace-pre-line">
+              <p className="text-sm text-[#64748B] leading-relaxed whitespace-pre-line">
                 {complaint.description}
               </p>
             </div>
 
             {/* Metadata Box */}
-            <div className="p-4 rounded-2xl bg-[#F8F7FC] border border-purple-100 space-y-3 text-xs text-slate-700">
+            <div className="p-4 rounded-2xl bg-[#F8FAFC] border border-sky-100 space-y-3 text-xs text-slate-700">
               <div className="flex items-center gap-2 font-medium">
-                <MapPin className="w-4 h-4 text-[#391759]" />
+                <MapPin className="w-4 h-4 text-[#0B4F8A]" />
                 <span>
                   <strong>Barrio:</strong> {complaint.neighborhood?.name || 'Merlo'}
                 </span>
@@ -186,7 +186,7 @@ export default function ComplaintDetailPage({ params }: { params: Promise<{ id: 
                       key={att.id}
                       type="button"
                       onClick={() => setSelectedPhoto(att.fileUrl)}
-                      className="relative h-32 rounded-2xl overflow-hidden border border-slate-200 group focus:outline-none focus:ring-2 focus:ring-purple-400"
+                      className="relative h-32 rounded-2xl overflow-hidden border border-slate-200 group focus:outline-none focus:ring-2 focus:ring-sky-400"
                     >
                       <img
                         src={att.fileUrl}
@@ -206,7 +206,7 @@ export default function ComplaintDetailPage({ params }: { params: Promise<{ id: 
                   ¿Este problema también te perjudica?
                 </span>
                 <span className="text-[11px] text-slate-500">
-                  Tu voto de apoyo fortalece la visibilidad para su gestión territorial.
+                  Tu voto de apoyo fortalece la visibilidad para su gestión comunitaria.
                 </span>
               </div>
 
@@ -238,11 +238,11 @@ export default function ComplaintDetailPage({ params }: { params: Promise<{ id: 
         {/* Right Column: Timeline & Tracking History */}
         <div className="lg:col-span-5 space-y-6">
           
-          <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#E8E4EF] shadow-lla-soft space-y-5">
+          <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#E2E8F0] shadow-civic-soft space-y-5">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
-                <MessageSquareQuote className="w-4 h-4 text-[#391759]" />
-                <h3 className="text-base font-bold text-[#17151D]">
+                <MessageSquareQuote className="w-4 h-4 text-[#0B4F8A]" />
+                <h3 className="text-base font-bold text-[#0F172A]">
                   Historial de Avances
                 </h3>
               </div>
@@ -255,13 +255,13 @@ export default function ComplaintDetailPage({ params }: { params: Promise<{ id: 
           </div>
 
           {/* Citizen Participation Info Card */}
-          <div className="p-5 rounded-2xl bg-purple-50/50 border border-purple-200 text-xs text-purple-950 space-y-2">
-            <span className="font-bold block text-sm text-[#240c3a] flex items-center gap-1.5">
-              <Sparkles className="w-4 h-4 text-[#391759]" />
-              <span>Compromiso de Gestión LLA Merlo</span>
+          <div className="p-5 rounded-2xl bg-sky-50/50 border border-sky-200 text-xs text-sky-950 space-y-2">
+            <span className="font-bold block text-sm text-[#072C4F] flex items-center gap-1.5">
+              <Sparkles className="w-4 h-4 text-[#0B4F8A]" />
+              <span>Compromiso de Gestión Vecinal</span>
             </span>
-            <p className="leading-relaxed text-purple-900">
-              Todas las solicitudes son clasificadas por el equipo territorial para elevar pedidos de informes, resoluciones en el Concejo y seguimiento permanente de los servicios públicos en cada barrio de Merlo.
+            <p className="leading-relaxed text-sky-900">
+              Todas las solicitudes son clasificadas por los coordinadores barriales para organizar petitorios comunitarios, pedidos formales y seguimiento permanente de los servicios públicos en cada barrio de Merlo.
             </p>
           </div>
 

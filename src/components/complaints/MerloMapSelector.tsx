@@ -55,10 +55,10 @@ export const MerloMapSelector: React.FC<MerloMapSelectorProps> = ({
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
-      // Custom Pin Icon
+      // Custom Pin Icon in Civic Blue
       const customIcon = L.divIcon({
         className: 'custom-map-pin',
-        html: `<div style="background-color: #391759; width: 32px; height: 32px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.3);"><div style="width: 10px; height: 10px; background: white; border-radius: 50%; transform: rotate(45deg);"></div></div>`,
+        html: `<div style="background-color: #0B4F8A; width: 32px; height: 32px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.3);"><div style="width: 10px; height: 10px; background: white; border-radius: 50%; transform: rotate(45deg);"></div></div>`,
         iconSize: [32, 32],
         iconAnchor: [16, 32],
       });
@@ -143,33 +143,33 @@ export const MerloMapSelector: React.FC<MerloMapSelectorProps> = ({
     <div className="space-y-2">
       <div className="flex items-center justify-between">
         <label className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
-          <MapPin className="w-3.5 h-3.5 text-[#391759]" />
+          <MapPin className="w-3.5 h-3.5 text-[#0B4F8A]" />
           <span>Ubicación en el mapa de Merlo (hacé clic o arrastrá el marcador)</span>
         </label>
 
         <button
           type="button"
           onClick={handleCenterOnMerlo}
-          className="text-xs text-[#391759] hover:underline flex items-center gap-1 font-bold"
+          className="text-xs text-[#0B4F8A] hover:underline flex items-center gap-1 font-bold"
         >
           <LocateFixed className="w-3 h-3" />
           <span>Centrar en Merlo</span>
         </button>
       </div>
 
-      <div className="relative w-full h-80 sm:h-96 min-h-[320px] rounded-2xl overflow-hidden border border-purple-200 shadow-inner bg-slate-100">
+      <div className="relative w-full h-80 sm:h-96 min-h-[320px] rounded-2xl overflow-hidden border border-sky-200 shadow-inner bg-slate-100">
         <div ref={mapContainerRef} className="w-full h-full" />
         
         {!isMapReady && (
           <div className="absolute inset-0 flex items-center justify-center bg-slate-100/90 text-slate-500 text-xs gap-2">
-            <span className="w-3 h-3 rounded-full border-2 border-[#391759] border-t-transparent animate-spin" />
+            <span className="w-3 h-3 rounded-full border-2 border-[#0B4F8A] border-t-transparent animate-spin" />
             <span>Cargando mapa de Merlo...</span>
           </div>
         )}
       </div>
 
-      <div className="flex items-start gap-1.5 text-[11px] text-[#6B6875] bg-purple-50/60 p-2.5 rounded-lg border border-purple-100">
-        <Info className="w-3.5 h-3.5 text-[#391759] shrink-0 mt-0.5" />
+      <div className="flex items-start gap-1.5 text-[11px] text-[#64748B] bg-sky-50/60 p-2.5 rounded-lg border border-sky-100">
+        <Info className="w-3.5 h-3.5 text-[#0B4F8A] shrink-0 mt-0.5" />
         <span>
           Por seguridad y privacidad, la ubicación exacta nunca se expone con numeración domiciliaria en la vista pública; se muestra la referencia barrial aproximada.
         </span>

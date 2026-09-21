@@ -3,7 +3,7 @@ import { ImageResponse } from 'next/og';
 export const alt = 'Merlo Participa | Portal Vecinal Independiente';
 export const size = {
   width: 1200,
-  height: 630,
+  height: 600,
 };
 export const contentType = 'image/png';
 
@@ -17,12 +17,12 @@ export default async function Image() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          backgroundColor: '#240C3A',
-          backgroundImage: 'radial-gradient(circle at 90% 15%, #4A1D75 0%, #240C3A 60%, #150622 100%)',
-          padding: '60px 70px',
+          backgroundColor: '#072C4F',
+          backgroundImage: 'radial-gradient(circle at 90% 15%, #0B4F8A 0%, #072C4F 60%, #03182B 100%)',
+          padding: '50px 60px',
           fontFamily: 'sans-serif',
           color: 'white',
-          border: '12px solid #391759',
+          border: '10px solid #0B4F8A',
           boxSizing: 'border-box',
         }}
       >
@@ -35,25 +35,25 @@ export default async function Image() {
               backgroundColor: 'rgba(255, 255, 255, 0.1)',
               border: '1.5px solid rgba(255, 255, 255, 0.2)',
               borderRadius: '999px',
-              padding: '10px 24px',
-              gap: '12px',
+              padding: '8px 20px',
+              gap: '10px',
             }}
           >
             <div
               style={{
-                width: '12px',
-                height: '12px',
+                width: '10px',
+                height: '10px',
                 borderRadius: '50%',
-                backgroundColor: '#A855F7',
+                backgroundColor: '#38BDF8',
               }}
             />
             <span
               style={{
-                fontSize: '18px',
+                fontSize: '16px',
                 fontWeight: 800,
                 letterSpacing: '2px',
                 textTransform: 'uppercase',
-                color: '#E9D5FF',
+                color: '#E0F2FE',
               }}
             >
               Portal Vecinal Independiente
@@ -63,25 +63,25 @@ export default async function Image() {
           <div
             style={{
               display: 'flex',
-              backgroundColor: '#391759',
-              borderRadius: '16px',
-              padding: '12px 24px',
-              fontSize: '16px',
+              backgroundColor: '#0B4F8A',
+              borderRadius: '12px',
+              padding: '10px 20px',
+              fontSize: '15px',
               fontWeight: 700,
-              color: '#F3E8FF',
-              border: '1px solid rgba(168, 85, 247, 0.4)',
+              color: '#F0F9FF',
+              border: '1px solid rgba(56, 189, 248, 0.4)',
             }}
           >
-            Comunidad de Merlo
+            Merlo Participa
           </div>
         </div>
 
         {/* Main Content */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '20px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginTop: '10px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <h1
               style={{
-                fontSize: '76px',
+                fontSize: '70px',
                 fontWeight: 900,
                 letterSpacing: '-2px',
                 margin: 0,
@@ -89,21 +89,21 @@ export default async function Image() {
                 color: '#FFFFFF',
               }}
             >
-              Merlo<span style={{ color: '#C084FC' }}>Participa</span>
+              Merlo<span style={{ color: '#38BDF8' }}>Participa</span>
             </h1>
           </div>
           
           <p
             style={{
-              fontSize: '28px',
+              fontSize: '25px',
               fontWeight: 500,
-              color: '#D8B4FE',
+              color: '#BAE6FD',
               margin: 0,
-              maxWidth: '920px',
+              maxWidth: '880px',
               lineHeight: 1.35,
             }}
           >
-            Plataforma ciudadana impulsada por vecinos para reportar problemáticas barriales, reclamos de infraestructura y propuestas comunitarias.
+            Plataforma ciudadana para reportar problemáticas barriales, reclamos de infraestructura y propuestas vecinales en Merlo.
           </p>
         </div>
 
@@ -113,65 +113,65 @@ export default async function Image() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            borderTop: '1px solid rgba(216, 180, 254, 0.2)',
-            paddingTop: '28px',
+            borderTop: '1px solid rgba(186, 230, 253, 0.2)',
+            paddingTop: '24px',
           }}
         >
-          <div style={{ display: 'flex', gap: '16px' }}>
+          <div style={{ display: 'flex', gap: '14px' }}>
             <div
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                backgroundColor: 'rgba(57, 23, 89, 0.7)',
-                padding: '10px 18px',
-                borderRadius: '12px',
-                fontSize: '17px',
+                backgroundColor: 'rgba(11, 79, 138, 0.7)',
+                padding: '8px 16px',
+                borderRadius: '10px',
+                fontSize: '15px',
                 fontWeight: 700,
-                color: '#FAF5FF',
-                border: '1px solid rgba(168, 85, 247, 0.3)',
+                color: '#F0F9FF',
+                border: '1px solid rgba(56, 189, 248, 0.3)',
               }}
             >
-              📢 Reclamos Ciudadanos
+              📢 Reclamos
             </div>
 
             <div
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                backgroundColor: 'rgba(57, 23, 89, 0.7)',
-                padding: '10px 18px',
-                borderRadius: '12px',
-                fontSize: '17px',
+                backgroundColor: 'rgba(11, 79, 138, 0.7)',
+                padding: '8px 16px',
+                borderRadius: '10px',
+                fontSize: '15px',
                 fontWeight: 700,
-                color: '#FAF5FF',
-                border: '1px solid rgba(168, 85, 247, 0.3)',
+                color: '#F0F9FF',
+                border: '1px solid rgba(56, 189, 248, 0.3)',
               }}
             >
-              🗺️ Mapa Territorial
+              🗺️ Mapa Comunitario
             </div>
 
             <div
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                backgroundColor: 'rgba(57, 23, 89, 0.7)',
-                padding: '10px 18px',
-                borderRadius: '12px',
-                fontSize: '17px',
+                backgroundColor: 'rgba(11, 79, 138, 0.7)',
+                padding: '8px 16px',
+                borderRadius: '10px',
+                fontSize: '15px',
                 fontWeight: 700,
-                color: '#FAF5FF',
-                border: '1px solid rgba(168, 85, 247, 0.3)',
+                color: '#F0F9FF',
+                border: '1px solid rgba(56, 189, 248, 0.3)',
               }}
             >
-              🤝 Impulsado por Vecinos
+              🤝 Proyecto de Vecinos
             </div>
           </div>
 
           <div
             style={{
-              fontSize: '20px',
+              fontSize: '18px',
               fontWeight: 800,
-              color: '#F3E8FF',
+              color: '#E0F2FE',
               letterSpacing: '0.5px',
             }}
           >

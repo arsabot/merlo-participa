@@ -2,15 +2,15 @@
 
 @layer base {
   :root {
-    --primary: #391759;
-    --primary-dark: #240c3a;
-    --primary-light: #622899;
-    --primary-subtle: #F4ECF9;
-    --background: #F8F5FA;
+    --primary: #0B4F8A;
+    --primary-dark: #072C4F;
+    --primary-light: #0284C7;
+    --primary-subtle: #F0F7FF;
+    --background: #F8FAFC;
     --surface: #FFFFFF;
-    --text-primary: #17151D;
-    --text-secondary: #6B6875;
-    --border: #E8E2EE;
+    --text-primary: #0F172A;
+    --text-secondary: #64748B;
+    --border: #E2E8F0;
   }
 
   body {
@@ -23,49 +23,49 @@
   }
 }
 
-/* Custom Utility Classes for Brand Violet & Civic Tech Styling */
-.bg-lla-primary {
-  background-color: #391759;
+/* Custom Utility Classes for Civic Tech Styling */
+.bg-civic-primary, .bg-lla-primary {
+  background-color: #0B4F8A;
 }
 
-.bg-lla-dark {
-  background-color: #240c3a;
+.bg-civic-dark, .bg-lla-dark {
+  background-color: #072C4F;
 }
 
-.bg-lla-light {
-  background-color: #622899;
+.bg-civic-light, .bg-lla-light {
+  background-color: #0284C7;
 }
 
-.bg-lla-subtle {
-  background-color: #F4ECF9;
+.bg-civic-subtle, .bg-lla-subtle {
+  background-color: #F0F7FF;
 }
 
-.text-lla-primary {
-  color: #391759;
+.text-civic-primary, .text-lla-primary {
+  color: #0B4F8A;
 }
 
-.text-lla-dark {
-  color: #240c3a;
+.text-civic-dark, .text-lla-dark {
+  color: #072C4F;
 }
 
-.text-lla-light {
-  color: #622899;
+.text-civic-light, .text-lla-light {
+  color: #0284C7;
 }
 
-.border-lla-primary {
-  border-color: #391759;
+.border-civic-primary, .border-lla-primary {
+  border-color: #0B4F8A;
 }
 
-.border-lla-subtle {
-  border-color: #E8E2EE;
+.border-civic-subtle, .border-lla-subtle {
+  border-color: #E2E8F0;
 }
 
-.shadow-lla-soft {
-  box-shadow: 0 4px 20px -2px rgba(57, 23, 89, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+.shadow-civic-soft, .shadow-lla-soft {
+  box-shadow: 0 4px 20px -2px rgba(11, 79, 138, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
 }
 
-.shadow-lla-card {
-  box-shadow: 0 10px 30px -4px rgba(57, 23, 89, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+.shadow-civic-card, .shadow-lla-card {
+  box-shadow: 0 10px 30px -4px rgba(11, 79, 138, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.05);
 }
 
 /* Leaflet Map Styling */

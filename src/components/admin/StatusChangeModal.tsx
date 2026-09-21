@@ -24,7 +24,7 @@ export const StatusChangeModal: React.FC<StatusChangeModalProps> = ({
   const [updateTitle, setUpdateTitle] = useState('');
   const [updateDescription, setUpdateDescription] = useState('');
   const [isInternalNote, setIsInternalNote] = useState(false);
-  const [authorName, setAuthorName] = useState('Equipo LLA Merlo');
+  const [authorName, setAuthorName] = useState('Coordinación Vecinal Merlo');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -67,15 +67,15 @@ export const StatusChangeModal: React.FC<StatusChangeModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in">
-      <div className="bg-white rounded-3xl max-w-lg w-full border border-[#E8E4EF] shadow-2xl overflow-hidden animate-scale-up">
+      <div className="bg-white rounded-3xl max-w-lg w-full border border-[#E2E8F0] shadow-2xl overflow-hidden animate-scale-up">
         
         {/* Header */}
-        <div className="p-6 bg-purple-50/50 border-b border-purple-100 flex items-center justify-between">
+        <div className="p-6 bg-sky-50/50 border-b border-sky-100 flex items-center justify-between">
           <div>
-            <span className="text-[11px] font-mono font-bold text-purple-700 bg-purple-100 px-2 py-0.5 rounded">
+            <span className="text-[11px] font-mono font-bold text-sky-800 bg-sky-100 px-2 py-0.5 rounded">
               {complaint.trackingCode}
             </span>
-            <h3 className="text-lg font-black text-[#17151D] mt-1">
+            <h3 className="text-lg font-black text-[#0F172A] mt-1">
               Actualizar Estado y Gestión
             </h3>
           </div>
@@ -104,7 +104,7 @@ export const StatusChangeModal: React.FC<StatusChangeModalProps> = ({
             <select
               value={newStatus}
               onChange={(e) => setNewStatus(e.target.value as ComplaintStatus)}
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-semibold text-slate-800 bg-white focus:ring-2 focus:ring-purple-400 focus:outline-none"
+              className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-semibold text-slate-800 bg-white focus:ring-2 focus:ring-sky-400 focus:outline-none"
             >
               {Object.entries(COMPLAINT_STATUS_CONFIG).map(([key, val]) => (
                 <option key={key} value={key}>
@@ -134,7 +134,7 @@ export const StatusChangeModal: React.FC<StatusChangeModalProps> = ({
               placeholder="Ej: Elevación formal al área correspondiente / Inspección"
               value={updateTitle}
               onChange={(e) => setUpdateTitle(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-purple-400 focus:outline-none"
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-sky-400 focus:outline-none"
             />
           </div>
 
@@ -148,7 +148,7 @@ export const StatusChangeModal: React.FC<StatusChangeModalProps> = ({
               placeholder="Detallá la acción llevada a cabo, número de expediente o resultado..."
               value={updateDescription}
               onChange={(e) => setUpdateDescription(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-purple-400 focus:outline-none"
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-sky-400 focus:outline-none"
             />
           </div>
 
@@ -161,7 +161,7 @@ export const StatusChangeModal: React.FC<StatusChangeModalProps> = ({
               type="text"
               value={authorName}
               onChange={(e) => setAuthorName(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-purple-400 focus:outline-none"
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-sky-400 focus:outline-none"
             />
           </div>
 
@@ -193,7 +193,7 @@ export const StatusChangeModal: React.FC<StatusChangeModalProps> = ({
             <button
               type="submit"
               disabled={isSubmitting}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-[#391759] hover:bg-[#240c3a] shadow-md transition-all"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-[#0B4F8A] hover:bg-[#072C4F] shadow-md transition-all"
             >
               <Check className="w-4 h-4" />
               <span>Guardar Actualización</span>

@@ -60,20 +60,20 @@ function SeguimientoContent() {
       
       {/* Page Header */}
       <div className="text-center max-w-2xl mx-auto space-y-3">
-        <span className="text-xs font-bold uppercase tracking-wider text-[#391759] inline-flex items-center gap-1.5">
+        <span className="text-xs font-bold uppercase tracking-wider text-[#0B4F8A] inline-flex items-center gap-1.5">
           <Sparkles className="w-3.5 h-3.5" />
           <span>Consulta de Trámites y Reclamos</span>
         </span>
-        <h1 className="text-3xl sm:text-4xl font-black text-[#17151D] tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-black text-[#0F172A] tracking-tight">
           Seguimiento en Tiempo Real
         </h1>
-        <p className="text-xs sm:text-sm text-[#6B6875] leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed">
           Ingresá tu código único de reclamo (ej: <strong>MP-2026-A8F2</strong>) para conocer el estado actual, las notas de gestión y el avance de tu reporte.
         </p>
       </div>
 
       {/* Search Bar Card */}
-      <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#E8E4EF] shadow-lla-soft">
+      <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#E2E8F0] shadow-civic-soft">
         <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1">
             <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
@@ -82,14 +82,14 @@ function SeguimientoContent() {
               placeholder="Ingresá tu código MP-XXXX-XXXX"
               value={inputCode}
               onChange={(e) => setInputCode(e.target.value.toUpperCase())}
-              className="w-full pl-12 pr-4 py-3.5 rounded-2xl border border-slate-200 text-sm font-mono uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-[#622899] focus:border-[#391759] bg-slate-50/60"
+              className="w-full pl-12 pr-4 py-3.5 rounded-2xl border border-slate-200 text-sm font-mono uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-[#0284C7] focus:border-[#0B4F8A] bg-slate-50/60"
             />
           </div>
 
           <button
             type="submit"
             disabled={isSearching}
-            className="px-8 py-3.5 rounded-2xl font-bold text-sm text-white bg-[#391759] hover:bg-[#240c3a] shadow-md shadow-[#391759]/25 transition-all flex items-center justify-center gap-2 hover:scale-[1.02]"
+            className="px-8 py-3.5 rounded-2xl font-bold text-sm text-white bg-[#0B4F8A] hover:bg-[#072C4F] shadow-md shadow-sky-900/20 transition-all flex items-center justify-center gap-2 hover:scale-[1.02]"
           >
             {isSearching ? (
               <span className="w-4 h-4 rounded-full border-2 border-white border-t-transparent animate-spin" />
@@ -112,7 +112,7 @@ function SeguimientoContent() {
                 router.push(`/seguimiento?codigo=${sample}`);
                 handleSearchCode(sample);
               }}
-              className="font-mono text-[#391759] bg-[#F4ECF9] hover:bg-purple-100 px-2 py-0.5 rounded border border-purple-200 transition-colors font-bold"
+              className="font-mono text-[#0B4F8A] bg-sky-50 hover:bg-sky-100 px-2 py-0.5 rounded border border-sky-200 transition-colors font-bold"
             >
               {sample}
             </button>
@@ -122,12 +122,12 @@ function SeguimientoContent() {
 
       {/* Result Card */}
       {searched && complaint && (
-        <div className="bg-white rounded-3xl border border-[#E8E4EF] p-6 sm:p-8 shadow-lla-soft space-y-6 animate-fade-in">
+        <div className="bg-white rounded-3xl border border-[#E2E8F0] p-6 sm:p-8 shadow-civic-soft space-y-6 animate-fade-in">
           
           {/* Header */}
           <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100">
             <div className="flex items-center gap-2">
-              <span className="text-base font-black font-mono text-[#240c3a] bg-[#F4ECF9] px-3 py-1 rounded-xl border border-purple-200">
+              <span className="text-base font-black font-mono text-[#072C4F] bg-sky-50 px-3 py-1 rounded-xl border border-sky-200">
                 {complaint.trackingCode}
               </span>
               <StatusBadge status={complaint.status} size="md" />
@@ -135,7 +135,7 @@ function SeguimientoContent() {
 
             <Link
               href={`/reclamos/${complaint.id}`}
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#391759] hover:underline"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0B4F8A] hover:underline"
             >
               <span>Ver ficha pública</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -165,7 +165,7 @@ function SeguimientoContent() {
                     key={step.key}
                     className={`p-2.5 rounded-xl border transition-all ${
                       isCurrent
-                        ? 'bg-[#F4ECF9] border-[#391759] text-[#240c3a] font-bold ring-2 ring-purple-200'
+                        ? 'bg-sky-50 border-[#0B4F8A] text-[#072C4F] font-bold ring-2 ring-sky-200'
                         : isPassed
                         ? 'bg-emerald-50 border-emerald-200 text-emerald-800 font-semibold'
                         : 'bg-slate-50 border-slate-200 text-slate-400'
@@ -182,15 +182,15 @@ function SeguimientoContent() {
           </div>
 
           {/* Complaint Summary */}
-          <div className="p-5 rounded-2xl bg-[#F8F7FC] border border-purple-100 space-y-2">
+          <div className="p-5 rounded-2xl bg-[#F8FAFC] border border-sky-100 space-y-2">
             <div className="flex items-center gap-2">
               <CategoryBadge categoryId={complaint.categoryId} size="sm" />
               <span className="text-xs font-semibold text-slate-600">
                 {complaint.neighborhood?.name || 'Merlo'} &bull; Registrado el {formatDate(complaint.createdAt)}
               </span>
             </div>
-            <h3 className="text-lg font-bold text-[#17151D]">{complaint.title}</h3>
-            <p className="text-xs text-[#6B6875] leading-relaxed line-clamp-3">
+            <h3 className="text-lg font-bold text-[#0F172A]">{complaint.title}</h3>
+            <p className="text-xs text-[#64748B] leading-relaxed line-clamp-3">
               {complaint.description}
             </p>
           </div>
@@ -198,7 +198,7 @@ function SeguimientoContent() {
           {/* Timeline of Updates */}
           <div className="space-y-4 pt-2">
             <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-              <Clock className="w-4 h-4 text-[#391759]" />
+              <Clock className="w-4 h-4 text-[#0B4F8A]" />
               <span>Historial de Actualizaciones ({complaint.updates?.length || 0})</span>
             </h3>
             <Timeline updates={complaint.updates || []} />
@@ -223,7 +223,7 @@ function SeguimientoContent() {
           </div>
           <Link
             href="/reclamos/nuevo"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#391759] text-white text-xs font-bold"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0B4F8A] text-white text-xs font-bold"
           >
             <span>Presentar un nuevo reclamo</span>
           </Link>
@@ -231,9 +231,9 @@ function SeguimientoContent() {
       )}
 
       {/* Help FAQ Box */}
-      <div className="p-6 rounded-3xl bg-white border border-[#E8E4EF] shadow-sm space-y-3">
+      <div className="p-6 rounded-3xl bg-white border border-[#E2E8F0] shadow-sm space-y-3">
         <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-          <HelpCircle className="w-4 h-4 text-[#391759]" />
+          <HelpCircle className="w-4 h-4 text-[#0B4F8A]" />
           <span>¿Cómo se gestiona tu reclamo?</span>
         </h3>
         <p className="text-xs text-slate-600 leading-relaxed">

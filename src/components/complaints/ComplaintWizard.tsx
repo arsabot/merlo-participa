@@ -4,52 +4,52 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import confetti from 'canvas-confetti';
-import { 
-  RequestType, 
-  CreateComplaintInput, 
-  Complaint 
-} from '@/lib/types';
-import { 
-  REQUEST_TYPES, 
-  COMPLAINT_CATEGORIES, 
-  NEIGHBORHOODS,
-  MERLO_MAP_CONFIG 
-} from '@/lib/constants';
 import { complaintsService } from '@/lib/services/complaintsService';
+import { CreateComplaintInput, RequestType, Complaint } from '@/lib/types';
+import { NEIGHBORHOODS, COMPLAINT_CATEGORIES, REQUEST_TYPES, MERLO_MAP_CONFIG } from '@/lib/constants';
 import { MerloMapSelector } from './MerloMapSelector';
 import { 
-  CheckCircle2, 
+  Check, 
   ChevronRight, 
   ChevronLeft, 
   Upload, 
   X, 
-  Copy, 
-  Check, 
-  ShieldAlert, 
-  Eye, 
-  EyeOff, 
-  FileText, 
   MapPin, 
-  User, 
-  Sparkles,
-  AlertCircle
+  Sparkles, 
+  Copy, 
+  AlertCircle, 
+  ShieldAlert, 
+  HelpCircle,
+  Eye,
+  EyeOff,
+  CheckCircle2
 } from 'lucide-react';
 
-export const ComplaintWizard: React.FC = () => {
+interface ComplaintWizardProps {
+  initialType?: string;
+  initialNeighborhoodId?: string;
+  initialCategoryId?: string;
+}
+
+export const ComplaintWizard: React.FC<ComplaintWizardProps> = ({
+  initialType,
+  initialNeighborhoodId,
+  initialCategoryId,
+}) => {
   const router = useRouter();
+
   const [currentStep, setCurrentStep] = useState<number>(1);
-  const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [createdComplaint, setCreatedComplaint] = useState<Complaint | null>(null);
   const [copiedCode, setCopiedCode] = useState(false);
 
   // Form State
   const [formData, setFormData] = useState<CreateComplaintInput>({
-    requestType: 'reclamo',
+    requestType: (initialType as RequestType) || 'reclamo',
     title: '',
     description: '',
-    categoryId: 'cat-1',
-    neighborhoodId: 'n-1',
+    categoryId: initialCategoryId || 'cat-1',
+    neighborhoodId: initialNeighborhoodId || 'n-1',
     address: '',
     referenceLocation: '',
     latitude: MERLO_MAP_CONFIG.center[0],
@@ -63,82 +63,79 @@ export const ComplaintWizard: React.FC = () => {
     attachments: [],
   });
 
-  // Image Upload Handling
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  // Image Upload handler simulation
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
 
-    const currentAttachments = formData.attachments || [];
-    if (currentAttachments.length >= 3) {
-      alert('Se permite un máximo de 3 imágenes como evidencia.');
-      return;
-    }
-
     const file = files[0];
     if (file.size > 5 * 1024 * 1024) {
-      alert('La imagen no puede superar los 5MB.');
+      alert('La imagen no debe superar los 5MB.');
       return;
     }
 
     const reader = new FileReader();
-    reader.onload = () => {
-      const base64Url = reader.result as string;
-      setFormData((prev) => ({
+    reader.onloadend = () => {
+      const base64 = reader.result as string;
+      const newAttachment = {
+        fileName: file.name,
+        fileUrl: base64,
+        fileSizeBytes: file.size,
+        mimeType: file.type,
+      };
+
+      setFormData((prev: CreateComplaintInput) => ({
         ...prev,
-        attachments: [
-          ...(prev.attachments || []),
-          {
-            fileUrl: base64Url,
-            fileName: file.name,
-            fileSizeBytes: file.size,
-            mimeType: file.type,
-          },
-        ],
+        attachments: [...(prev.attachments || []), newAttachment].slice(0, 3), // Max 3 images
       }));
     };
     reader.readAsDataURL(file);
   };
 
   const handleRemoveImage = (index: number) => {
-    setFormData((prev) => ({
+    setFormData((prev: CreateComplaintInput) => ({
       ...prev,
-      attachments: (prev.attachments || []).filter((_, i) => i !== index),
+      attachments: prev.attachments?.filter((_: unknown, i: number) => i !== index),
     }));
   };
 
-  // Validation per step
+  // Step Validation
   const validateStep = (step: number): boolean => {
     const newErrors: Record<string, string> = {};
 
     if (step === 1) {
-      if (!formData.requestType) newErrors.requestType = 'Seleccioná el tipo de solicitud';
+      if (!formData.requestType) newErrors.requestType = 'Seleccioná un tipo de solicitud.';
     }
 
     if (step === 2) {
-      if (!formData.title.trim() || formData.title.trim().length < 5) {
-        newErrors.title = 'El título debe tener al menos 5 caracteres descriptivos';
-      }
-      if (!formData.description.trim() || formData.description.trim().length < 15) {
-        newErrors.description = 'Detallá el problema con al menos 15 caracteres';
-      }
-      if (!formData.categoryId) newErrors.categoryId = 'Seleccioná una categoría';
-      if (!formData.neighborhoodId) newErrors.neighborhoodId = 'Seleccioná el barrio';
+      if (!formData.title.trim()) newErrors.title = 'El título es obligatorio.';
+      else if (formData.title.trim().length < 5) newErrors.title = 'El título debe tener al menos 5 caracteres.';
+
+      if (!formData.description.trim()) newErrors.description = 'La descripción es obligatoria.';
+      else if (formData.description.trim().length < 15) newErrors.description = 'Por favor brindá más detalles (mínimo 15 caracteres).';
+
+      if (!formData.categoryId) newErrors.categoryId = 'Seleccioná una categoría.';
+      if (!formData.neighborhoodId) newErrors.neighborhoodId = 'Seleccioná un barrio de Merlo.';
     }
 
     if (step === 3) {
-      // Map location is optional but recommended
+      if (!formData.latitude || !formData.longitude) {
+        newErrors.location = 'Por favor confirmá la ubicación en el mapa.';
+      }
     }
 
     if (step === 4) {
-      if (!formData.contactName.trim() || formData.contactName.trim().length < 3) {
-        newErrors.contactName = 'Ingresá tu nombre completo';
+      if (!formData.contactName.trim()) newErrors.contactName = 'El nombre es obligatorio.';
+      if (!formData.contactEmail.trim()) {
+        newErrors.contactEmail = 'El correo electrónico es obligatorio.';
+      } else if (!formData.contactEmail.includes('@') || !formData.contactEmail.includes('.')) {
+        newErrors.contactEmail = 'Ingresá un correo electrónico válido.';
       }
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!formData.contactEmail.trim() || !emailRegex.test(formData.contactEmail.trim())) {
-        newErrors.contactEmail = 'Ingresá un correo electrónico válido para recibir novedades';
-      }
+
       if (!formData.privacyAccepted) {
-        newErrors.privacyAccepted = 'Debés aceptar los términos y política de privacidad';
+        newErrors.privacyAccepted = 'Debes aceptar los términos de uso y privacidad.';
       }
     }
 
@@ -158,7 +155,8 @@ export const ComplaintWizard: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     if (!validateStep(4)) {
       setCurrentStep(4);
       return;
@@ -167,6 +165,9 @@ export const ComplaintWizard: React.FC = () => {
     setIsSubmitting(true);
 
     try {
+      // Simulate network request
+      await new Promise((r) => setTimeout(r, 600));
+
       const created = complaintsService.createComplaint(formData);
       setCreatedComplaint(created);
 
@@ -176,7 +177,7 @@ export const ComplaintWizard: React.FC = () => {
           particleCount: 80,
           spread: 70,
           origin: { y: 0.6 },
-          colors: ['#391759', '#622899', '#10B981', '#F59E0B'],
+          colors: ['#0B4F8A', '#0284C7', '#10B981', '#F59E0B'],
         });
       } catch (e) {
         // Safe fallback
@@ -213,7 +214,7 @@ export const ComplaintWizard: React.FC = () => {
       {currentStep <= 5 && (
         <div className="mb-8">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#391759]">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#0B4F8A]">
               Paso {currentStep} de 5: {stepTitles[currentStep - 1]}
             </span>
             <span className="text-xs text-slate-500 font-medium">
@@ -224,7 +225,7 @@ export const ComplaintWizard: React.FC = () => {
           {/* Progress Bar */}
           <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
             <div
-              className="bg-gradient-to-r from-[#391759] to-[#622899] h-full transition-all duration-300 ease-out"
+              className="bg-gradient-to-r from-[#0B4F8A] to-[#0284C7] h-full transition-all duration-300 ease-out"
               style={{ width: `${(currentStep / 5) * 100}%` }}
             />
           </div>
@@ -246,7 +247,7 @@ export const ComplaintWizard: React.FC = () => {
                   }}
                   className={`text-left p-2.5 rounded-xl border text-xs font-medium transition-colors ${
                     isCurrent
-                      ? 'bg-purple-50 border-[#391759] text-[#391759] font-bold shadow-sm'
+                      ? 'bg-sky-50 border-[#0B4F8A] text-[#0B4F8A] font-bold shadow-sm'
                       : isPast
                       ? 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50 cursor-pointer'
                       : 'bg-slate-50 border-transparent text-slate-400 cursor-not-allowed'
@@ -256,7 +257,7 @@ export const ComplaintWizard: React.FC = () => {
                     <span
                       className={`w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-bold ${
                         isCurrent
-                          ? 'bg-[#391759] text-white'
+                          ? 'bg-[#0B4F8A] text-white'
                           : isPast
                           ? 'bg-emerald-500 text-white'
                           : 'bg-slate-300 text-slate-600'
@@ -274,16 +275,16 @@ export const ComplaintWizard: React.FC = () => {
       )}
 
       {/* Main Form Container */}
-      <div className="bg-white rounded-3xl border border-[#E8E4EF] p-6 sm:p-10 shadow-lla-soft">
+      <div className="bg-white rounded-3xl border border-[#E2E8F0] p-6 sm:p-10 shadow-civic-soft">
         
         {/* STEP 1: Tipo de Solicitud */}
         {currentStep === 1 && (
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-black text-[#17151D] tracking-tight">
+              <h2 className="text-2xl font-black text-[#0F172A] tracking-tight">
                 ¿Qué tipo de situación deseás presentar?
               </h2>
-              <p className="text-sm text-[#6B6875] mt-1">
+              <p className="text-sm text-[#64748B] mt-1">
                 Elegí la opción que mejor se adapte a tu inquietud vecinal para una correcta gestión.
               </p>
             </div>
@@ -301,25 +302,25 @@ export const ComplaintWizard: React.FC = () => {
                     }}
                     className={`text-left p-5 rounded-2xl border-2 transition-all duration-200 flex flex-col justify-between gap-3 ${
                       isSelected
-                        ? 'border-[#391759] bg-purple-50/50 shadow-md ring-4 ring-purple-100'
-                        : 'border-slate-200 hover:border-purple-300 hover:bg-slate-50/60'
+                        ? 'border-[#0B4F8A] bg-sky-50/50 shadow-md ring-4 ring-sky-100'
+                        : 'border-slate-200 hover:border-sky-300 hover:bg-slate-50/60'
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-bold text-base text-[#17151D]">
+                      <span className="font-bold text-base text-[#0F172A]">
                         {type.label}
                       </span>
                       <div
                         className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
                           isSelected
-                            ? 'border-[#391759] bg-[#391759] text-white'
+                            ? 'border-[#0B4F8A] bg-[#0B4F8A] text-white'
                             : 'border-slate-300'
                         }`}
                       >
                         {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
                       </div>
                     </div>
-                    <p className="text-xs text-[#6B6875] leading-relaxed">
+                    <p className="text-xs text-[#64748B] leading-relaxed">
                       {type.description}
                     </p>
                   </button>
@@ -336,10 +337,10 @@ export const ComplaintWizard: React.FC = () => {
         {currentStep === 2 && (
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-black text-[#17151D] tracking-tight">
+              <h2 className="text-2xl font-black text-[#0F172A] tracking-tight">
                 Detalles del reclamo o propuesta
               </h2>
-              <p className="text-sm text-[#6B6875] mt-1">
+              <p className="text-sm text-[#64748B] mt-1">
                 Cuanto más específica sea la información, más rápido podremos verificarla en el barrio.
               </p>
             </div>
@@ -357,7 +358,7 @@ export const ComplaintWizard: React.FC = () => {
                 className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 ${
                   errors.title
                     ? 'border-rose-300 focus:ring-rose-400 bg-rose-50/20'
-                    : 'border-slate-200 focus:ring-purple-400 focus:border-[#391759]'
+                    : 'border-slate-200 focus:ring-sky-400 focus:border-[#0B4F8A]'
                 }`}
               />
               {errors.title && <p className="text-xs text-rose-600 font-semibold">{errors.title}</p>}
@@ -372,7 +373,7 @@ export const ComplaintWizard: React.FC = () => {
                 <select
                   value={formData.categoryId}
                   onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400 bg-white"
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
                 >
                   {COMPLAINT_CATEGORIES.map((cat) => (
                     <option key={cat.id} value={cat.id}>
@@ -389,7 +390,7 @@ export const ComplaintWizard: React.FC = () => {
                 <select
                   value={formData.neighborhoodId}
                   onChange={(e) => setFormData({ ...formData, neighborhoodId: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400 bg-white"
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 bg-white"
                 >
                   {NEIGHBORHOODS.map((n) => (
                     <option key={n.id} value={n.id}>
@@ -413,7 +414,7 @@ export const ComplaintWizard: React.FC = () => {
                 className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 ${
                   errors.description
                     ? 'border-rose-300 focus:ring-rose-400 bg-rose-50/20'
-                    : 'border-slate-200 focus:ring-purple-400 focus:border-[#391759]'
+                    : 'border-slate-200 focus:ring-sky-400 focus:border-[#0B4F8A]'
                 }`}
               />
               {errors.description && (
@@ -430,7 +431,7 @@ export const ComplaintWizard: React.FC = () => {
                 type="date"
                 value={formData.incidentDate}
                 onChange={(e) => setFormData({ ...formData, incidentDate: e.target.value })}
-                className="w-full sm:w-64 px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                className="w-full sm:w-64 px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
               />
             </div>
 
@@ -441,10 +442,10 @@ export const ComplaintWizard: React.FC = () => {
               </label>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {formData.attachments?.map((att, idx) => (
+                {formData.attachments?.map((att: { fileUrl: string; fileName: string }, idx: number) => (
                   <div
                     key={idx}
-                    className="relative rounded-xl overflow-hidden border border-purple-200 h-24 bg-slate-50 group"
+                    className="relative rounded-xl overflow-hidden border border-sky-200 h-24 bg-slate-50 group"
                   >
                     <img
                       src={att.fileUrl}
@@ -463,9 +464,9 @@ export const ComplaintWizard: React.FC = () => {
                 ))}
 
                 {(formData.attachments?.length || 0) < 3 && (
-                  <label className="flex flex-col items-center justify-center h-24 rounded-xl border-2 border-dashed border-purple-300 hover:border-[#391759] bg-purple-50/40 hover:bg-purple-50/80 cursor-pointer transition-colors p-2 text-center">
-                    <Upload className="w-5 h-5 text-[#391759] mb-1" />
-                    <span className="text-[11px] font-semibold text-[#240c3a]">Subir foto</span>
+                  <label className="flex flex-col items-center justify-center h-24 rounded-xl border-2 border-dashed border-sky-300 hover:border-[#0B4F8A] bg-sky-50/40 hover:bg-sky-50/80 cursor-pointer transition-colors p-2 text-center">
+                    <Upload className="w-5 h-5 text-[#0B4F8A] mb-1" />
+                    <span className="text-[11px] font-semibold text-[#072C4F]">Subir foto</span>
                     <span className="text-[9px] text-slate-400">JPG, PNG (máx 5MB)</span>
                     <input
                       type="file"
@@ -484,10 +485,10 @@ export const ComplaintWizard: React.FC = () => {
         {currentStep === 3 && (
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-black text-[#17151D] tracking-tight">
+              <h2 className="text-2xl font-black text-[#0F172A] tracking-tight">
                 Ubicación geográfica en Merlo
               </h2>
-              <p className="text-sm text-[#6B6875] mt-1">
+              <p className="text-sm text-[#64748B] mt-1">
                 Marcá el punto en el mapa interactivo o ingresá la dirección y referencias.
               </p>
             </div>
@@ -503,7 +504,7 @@ export const ComplaintWizard: React.FC = () => {
                   placeholder="Ej: Av. del Libertador 450"
                   value={formData.address}
                   onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
                 />
               </div>
 
@@ -516,7 +517,7 @@ export const ComplaintWizard: React.FC = () => {
                   placeholder="Ej: Esquina Jujuy, frente a la plaza"
                   value={formData.referenceLocation}
                   onChange={(e) => setFormData({ ...formData, referenceLocation: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
                 />
               </div>
             </div>
@@ -526,8 +527,8 @@ export const ComplaintWizard: React.FC = () => {
               selectedNeighborhoodId={formData.neighborhoodId}
               latitude={formData.latitude}
               longitude={formData.longitude}
-              onLocationChange={(lat, lng, nId) => {
-                setFormData((prev) => ({
+              onLocationChange={(lat: number, lng: number, nId: string) => {
+                setFormData((prev: CreateComplaintInput) => ({
                   ...prev,
                   latitude: lat,
                   longitude: lng,
@@ -542,10 +543,10 @@ export const ComplaintWizard: React.FC = () => {
         {currentStep === 4 && (
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-black text-[#17151D] tracking-tight">
+              <h2 className="text-2xl font-black text-[#0F172A] tracking-tight">
                 Datos de contacto y preferencias
               </h2>
-              <p className="text-sm text-[#6B6875] mt-1">
+              <p className="text-sm text-[#64748B] mt-1">
                 Tus datos de contacto son <strong>estrictamente privados</strong> y solo se utilizan para notificarte los avances del reclamo.
               </p>
             </div>
@@ -563,7 +564,7 @@ export const ComplaintWizard: React.FC = () => {
                   className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 ${
                     errors.contactName
                       ? 'border-rose-300 focus:ring-rose-400 bg-rose-50/20'
-                      : 'border-slate-200 focus:ring-purple-400'
+                      : 'border-slate-200 focus:ring-sky-400'
                   }`}
                 />
                 {errors.contactName && (
@@ -584,7 +585,7 @@ export const ComplaintWizard: React.FC = () => {
                     className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 ${
                       errors.contactEmail
                         ? 'border-rose-300 focus:ring-rose-400 bg-rose-50/20'
-                        : 'border-slate-200 focus:ring-purple-400'
+                        : 'border-slate-200 focus:ring-sky-400'
                     }`}
                   />
                   {errors.contactEmail && (
@@ -601,27 +602,27 @@ export const ComplaintWizard: React.FC = () => {
                     placeholder="11-XXXX-XXXX"
                     value={formData.contactPhone}
                     onChange={(e) => setFormData({ ...formData, contactPhone: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
                   />
                 </div>
               </div>
             </div>
 
             {/* Public Visibility Toggle */}
-            <div className="p-4 rounded-2xl bg-purple-50/50 border border-purple-200 space-y-3">
+            <div className="p-4 rounded-2xl bg-sky-50/50 border border-sky-200 space-y-3">
               <label className="flex items-start gap-3 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={formData.isPublic}
                   onChange={(e) => setFormData({ ...formData, isPublic: e.target.checked })}
-                  className="mt-1 w-4 h-4 text-[#391759] rounded focus:ring-purple-400"
+                  className="mt-1 w-4 h-4 text-[#0B4F8A] rounded focus:ring-sky-400"
                 />
                 <div>
-                  <span className="text-sm font-bold text-[#17151D] flex items-center gap-1.5">
-                    {formData.isPublic ? <Eye className="w-4 h-4 text-[#391759]" /> : <EyeOff className="w-4 h-4 text-slate-400" />}
+                  <span className="text-sm font-bold text-[#0F172A] flex items-center gap-1.5">
+                    {formData.isPublic ? <Eye className="w-4 h-4 text-[#0B4F8A]" /> : <EyeOff className="w-4 h-4 text-slate-400" />}
                     Publicar reclamo en el listado y mapa vecinal
                   </span>
-                  <p className="text-xs text-[#6B6875] mt-0.5">
+                  <p className="text-xs text-[#64748B] mt-0.5">
                     Permite que otros vecinos de Merlo vean la problemática y puedan sumarle apoyos ("Me afecta a mí también"). Tus datos personales permanecen ocultos.
                   </p>
                 </div>
@@ -635,10 +636,10 @@ export const ComplaintWizard: React.FC = () => {
                   type="checkbox"
                   checked={formData.privacyAccepted}
                   onChange={(e) => setFormData({ ...formData, privacyAccepted: e.target.checked })}
-                  className="mt-1 w-4 h-4 text-[#391759] rounded focus:ring-purple-400"
+                  className="mt-1 w-4 h-4 text-[#0B4F8A] rounded focus:ring-sky-400"
                 />
                 <span className="text-xs text-slate-600 leading-relaxed">
-                  Acepto la <Link href="/privacidad" target="_blank" className="text-[#391759] font-semibold underline">política de privacidad</Link> y autorizo a los coordinadores comunitarios de Merlo Participa a gestionar y dar seguimiento a la presente solicitud vecinal.
+                  Acepto la <Link href="/privacidad" target="_blank" className="text-[#0B4F8A] font-semibold underline">política de privacidad</Link> y autorizo a los coordinadores comunitarios de Merlo Participa a gestionar y dar seguimiento a la presente solicitud vecinal.
                 </span>
               </label>
               {errors.privacyAccepted && (
@@ -652,25 +653,25 @@ export const ComplaintWizard: React.FC = () => {
         {currentStep === 5 && (
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-black text-[#17151D] tracking-tight">
+              <h2 className="text-2xl font-black text-[#0F172A] tracking-tight">
                 Resumen de la solicitud
               </h2>
-              <p className="text-sm text-[#6B6875] mt-1">
+              <p className="text-sm text-[#64748B] mt-1">
                 Revisá los datos antes de enviar. Al confirmar, se generará tu código único de seguimiento.
               </p>
             </div>
 
-            <div className="space-y-4 bg-purple-50/30 p-5 sm:p-6 rounded-2xl border border-purple-200">
-              <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-purple-200/60">
+            <div className="space-y-4 bg-sky-50/30 p-5 sm:p-6 rounded-2xl border border-sky-200">
+              <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-sky-200/60">
                 <div>
-                  <span className="text-xs font-semibold text-purple-700 uppercase tracking-wider">
+                  <span className="text-xs font-semibold text-sky-700 uppercase tracking-wider">
                     {REQUEST_TYPES.find((t) => t.type === formData.requestType)?.label}
                   </span>
-                  <h3 className="text-lg font-bold text-[#17151D] mt-0.5">
+                  <h3 className="text-lg font-bold text-[#0F172A] mt-0.5">
                     {formData.title}
                   </h3>
                 </div>
-                <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#391759] text-white">
+                <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#0B4F8A] text-white">
                   {COMPLAINT_CATEGORIES.find((c) => c.id === formData.categoryId)?.name}
                 </span>
               </div>
@@ -679,7 +680,7 @@ export const ComplaintWizard: React.FC = () => {
                 {formData.description}
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-purple-200/60 text-xs text-slate-600">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-sky-200/60 text-xs text-slate-600">
                 <div>
                   <strong className="text-slate-900">Barrio:</strong>{' '}
                   {NEIGHBORHOODS.find((n) => n.id === formData.neighborhoodId)?.name}
@@ -698,12 +699,12 @@ export const ComplaintWizard: React.FC = () => {
               </div>
 
               {formData.attachments && formData.attachments.length > 0 && (
-                <div className="pt-3 border-t border-purple-200/60">
+                <div className="pt-3 border-t border-sky-200/60">
                   <span className="text-xs font-semibold text-slate-700 block mb-2">
                     Fotos adjuntas ({formData.attachments.length}):
                   </span>
                   <div className="flex gap-2">
-                    {formData.attachments.map((att, idx) => (
+                    {formData.attachments.map((att: { fileUrl: string; fileName: string }, idx: number) => (
                       <div key={idx} className="w-16 h-16 rounded-lg overflow-hidden border border-slate-300">
                         <img src={att.fileUrl} alt={att.fileName} className="w-full h-full object-cover" />
                       </div>
@@ -715,7 +716,7 @@ export const ComplaintWizard: React.FC = () => {
 
             {/* Non-official reminder disclaimer */}
             <div className="p-4 rounded-xl bg-slate-100 border border-slate-200 flex items-start gap-2.5 text-xs text-slate-600 leading-relaxed">
-              <ShieldAlert className="w-4 h-4 text-[#391759] shrink-0 mt-0.5" />
+              <ShieldAlert className="w-4 h-4 text-[#0B4F8A] shrink-0 mt-0.5" />
               <span>
                 Al enviar este reporte, la comunidad vecinal de Merlo Participa lo revisará para coordinar visibilidad y difusión. Recordá que este portal es una herramienta ciudadana y no reemplaza los servicios oficiales de emergencias (911).
               </span>
@@ -731,32 +732,32 @@ export const ComplaintWizard: React.FC = () => {
             </div>
 
             <div className="space-y-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#F4ECF9] text-[#240c3a]">
-                <Sparkles className="w-3.5 h-3.5 text-[#391759]" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-sky-50 text-[#072C4F]">
+                <Sparkles className="w-3.5 h-3.5 text-[#0B4F8A]" />
                 ¡Reclamo Registrado con Éxito!
               </span>
-              <h2 className="text-2xl sm:text-3xl font-black text-[#17151D] tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-black text-[#0F172A] tracking-tight">
                 Gracias por participar, {createdComplaint.contactName}
               </h2>
-              <p className="text-sm text-[#6B6875] max-w-md mx-auto">
+              <p className="text-sm text-[#64748B] max-w-md mx-auto">
                 Tu solicitud ya ingresó al sistema de Merlo Participa y será revisada por nuestro equipo barrial.
               </p>
             </div>
 
             {/* Tracking Code Highlight Box */}
-            <div className="max-w-md mx-auto p-6 rounded-2xl bg-gradient-to-br from-purple-50 to-white border-2 border-purple-200 shadow-md space-y-3">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#391759]">
+            <div className="max-w-md mx-auto p-6 rounded-2xl bg-gradient-to-br from-sky-50 to-white border-2 border-sky-200 shadow-md space-y-3">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#0B4F8A]">
                 Código Único de Seguimiento
               </span>
               
               <div className="flex items-center justify-center gap-3">
-                <span className="text-2xl sm:text-3xl font-black font-mono tracking-widest text-[#240c3a]">
+                <span className="text-2xl sm:text-3xl font-black font-mono tracking-widest text-[#072C4F]">
                   {createdComplaint.trackingCode}
                 </span>
                 <button
                   type="button"
                   onClick={copyTrackingCode}
-                  className="p-2.5 rounded-xl bg-white border border-purple-200 hover:bg-[#F4ECF9] text-[#391759] shadow-sm transition-colors"
+                  className="p-2.5 rounded-xl bg-white border border-sky-200 hover:bg-sky-50 text-[#0B4F8A] shadow-sm transition-colors"
                   title="Copiar código de seguimiento"
                 >
                   {copiedCode ? <Check className="w-5 h-5 text-emerald-600" /> : <Copy className="w-5 h-5" />}
@@ -772,14 +773,14 @@ export const ComplaintWizard: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
               <Link
                 href={`/reclamos/${createdComplaint.id}`}
-                className="w-full sm:w-auto px-6 py-3 rounded-xl font-bold text-sm text-white bg-[#391759] hover:bg-[#240c3a] shadow-md shadow-[#391759]/25 transition-all"
+                className="w-full sm:w-auto px-6 py-3 rounded-xl font-bold text-sm text-white bg-[#0B4F8A] hover:bg-[#072C4F] shadow-md shadow-sky-900/20 transition-all"
               >
                 Ver Ficha del Reclamo
               </Link>
               
               <Link
                 href="/reclamos"
-                className="w-full sm:w-auto px-6 py-3 rounded-xl font-bold text-sm text-[#240c3a] bg-[#F4ECF9] border border-purple-200 hover:bg-purple-100 transition-colors"
+                className="w-full sm:w-auto px-6 py-3 rounded-xl font-bold text-sm text-[#072C4F] bg-sky-50 border border-sky-200 hover:bg-sky-100 transition-colors"
               >
                 Explorar Reclamos de Merlo
               </Link>
@@ -836,7 +837,7 @@ export const ComplaintWizard: React.FC = () => {
               <button
                 type="button"
                 onClick={handleNext}
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold text-white bg-[#391759] hover:bg-[#240c3a] shadow-md shadow-[#391759]/20 transition-all hover:scale-[1.02]"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold text-white bg-[#0B4F8A] hover:bg-[#072C4F] shadow-md shadow-sky-900/20 transition-all hover:scale-[1.02]"
               >
                 <span>Siguiente</span>
                 <ChevronRight className="w-4 h-4" />

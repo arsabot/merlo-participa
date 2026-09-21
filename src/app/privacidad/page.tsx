@@ -7,29 +7,29 @@ export default function PrivacidadPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       
       {/* Header */}
-      <div className="space-y-2 pb-6 border-b border-[#E8E4EF]">
+      <div className="space-y-2 pb-6 border-b border-[#E2E8F0]">
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#391759] hover:underline mb-2"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0B4F8A] hover:underline mb-2"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Volver al inicio</span>
         </Link>
-        <h1 className="text-3xl sm:text-4xl font-black text-[#17151D] tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-black text-[#0F172A] tracking-tight">
           Política de Privacidad y Términos de Uso
         </h1>
-        <p className="text-xs sm:text-sm text-[#6B6875]">
+        <p className="text-xs sm:text-sm text-[#64748B]">
           Última actualización: Septiembre de 2026 &bull; Merlo Participa (Comunidad de Vecinos de Merlo)
         </p>
       </div>
 
       {/* Main Legal Content */}
-      <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#E8E4EF] shadow-lla-soft space-y-8 text-xs sm:text-sm text-[#6B6875] leading-relaxed">
+      <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#E2E8F0] shadow-civic-soft space-y-8 text-xs sm:text-sm text-[#64748B] leading-relaxed">
         
         {/* Section 1 */}
         <section className="space-y-3">
-          <h2 className="text-base sm:text-lg font-bold text-[#17151D] flex items-center gap-2">
-            <ShieldCheck className="w-5 h-5 text-[#391759]" />
+          <h2 className="text-base sm:text-lg font-bold text-[#0F172A] flex items-center gap-2">
+            <ShieldCheck className="w-5 h-5 text-[#0B4F8A]" />
             <span>1. Marco Comunitario y Propósito</span>
           </h2>
           <p>
@@ -42,8 +42,8 @@ export default function PrivacidadPage() {
 
         {/* Section 2 */}
         <section className="space-y-3">
-          <h2 className="text-base sm:text-lg font-bold text-[#17151D] flex items-center gap-2">
-            <Lock className="w-5 h-5 text-[#391759]" />
+          <h2 className="text-base sm:text-lg font-bold text-[#0F172A] flex items-center gap-2">
+            <Lock className="w-5 h-5 text-[#0B4F8A]" />
             <span>2. Protección de Datos Personales (Ley 25.326)</span>
           </h2>
           <p>
@@ -58,8 +58,8 @@ export default function PrivacidadPage() {
 
         {/* Section 3 */}
         <section className="space-y-3">
-          <h2 className="text-base sm:text-lg font-bold text-[#17151D] flex items-center gap-2">
-            <Eye className="w-5 h-5 text-[#391759]" />
+          <h2 className="text-base sm:text-lg font-bold text-[#0F172A] flex items-center gap-2">
+            <Eye className="w-5 h-5 text-[#0B4F8A]" />
             <span>3. Visibilidad Pública y Geolocalización</span>
           </h2>
           <p>
@@ -91,7 +91,7 @@ export default function PrivacidadPage() {
 
         {/* Section 5 */}
         <section className="space-y-3">
-          <h2 className="text-base sm:text-lg font-bold text-[#17151D]">
+          <h2 className="text-base sm:text-lg font-bold text-[#0F172A]">
             5. Derechos de Acceso, Rectificación y Supresión
           </h2>
           <p>
