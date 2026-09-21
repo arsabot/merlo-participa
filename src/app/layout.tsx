@@ -34,25 +34,45 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      { url: '/icon.png', sizes: '512x512', type: 'image/png' },
       { url: '/icon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico' },
+      { url: '/favicon.ico', sizes: 'any' },
     ],
+    shortcut: ['/favicon.ico'],
     apple: [
-      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      { url: '/icon.png', sizes: '512x512', type: 'image/png' },
     ],
   },
   openGraph: {
     title: "Merlo Participa | Tu voz, tu barrio, tu municipio",
-    description: "Plataforma vecinal para reportar reclamos de luminarias, baches, cloacas, seguridad y propuestas de mejora para transformar Merlo.",
+    description: "Espacio de escucha vecinal y gestión cívica para transformar los barrios de Merlo.",
     url: siteUrl,
     siteName: "Merlo Participa",
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: "Merlo Participa | La Libertad Avanza Merlo",
+        type: 'image/png',
+      },
+      {
+        url: '/icon.png',
+        width: 512,
+        height: 512,
+        alt: "Merlo Participa - Icono Oficial",
+        type: 'image/png',
+      },
+    ],
     locale: "es_AR",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Merlo Participa | Tu voz, tu barrio, tu municipio",
-    description: "Plataforma vecinal impulsada por La Libertad Avanza Merlo para escuchar y gestionar reclamos barriales.",
+    description: "Espacio de escucha vecinal y gestión cívica para transformar los barrios de Merlo.",
+    images: ['/og-image.png'],
     creator: "@llamerlo",
   },
   robots: {
