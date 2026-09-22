@@ -1,25 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
   <defs>
     <linearGradient id="merlo-icon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0B4F8A" />
-      <stop offset="100%" stop-color="#072C4F" />
+      <stop offset="0%" stop-color="#0E5A9D" />
+      <stop offset="100%" stop-color="#062544" />
     </linearGradient>
-    <linearGradient id="merlo-m-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="merlo-cyan-glow" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#38BDF8" />
       <stop offset="100%" stop-color="#0284C7" />
     </linearGradient>
   </defs>
 
-  <!-- Background with smooth rounded corners -->
-  <rect width="512" height="512" rx="112" fill="url(#merlo-icon-grad)" />
-  <rect width="504" height="504" x="4" y="4" rx="108" fill="none" stroke="#38BDF8" stroke-width="6" opacity="0.4" />
+  <!-- Background Squircle with Glow Border -->
+  <rect width="512" height="512" rx="128" fill="url(#merlo-icon-grad)" />
+  <rect width="496" height="496" x="8" y="8" rx="120" stroke="url(#merlo-cyan-glow)" stroke-width="10" stroke-opacity="0.65" />
 
-  <!-- Stylized Community Map Pin -->
-  <path d="M256 100 C180 100 120 160 120 236 C120 334 256 424 256 424 C256 424 392 334 392 236 C392 160 332 100 256 100 Z" fill="#FFFFFF" />
+  <!-- Stylized Geo-Pin -->
+  <path d="M256 75 C176 75 112 139 112 220 C112 320 256 430 256 430 C256 430 400 320 400 220 C400 139 336 75 256 75 Z" fill="#FFFFFF" />
 
-  <!-- Inner Center Pin Ring -->
-  <circle cx="256" cy="220" r="48" fill="#0B4F8A" />
-  
-  <!-- Stylized Community M in Vibrant Sky/Cyan -->
-  <path d="M190 310 L226 200 L256 250 L286 200 L322 310" stroke="url(#merlo-m-grad)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Inner Dark Blue Ring -->
+  <circle cx="256" cy="216" r="66" fill="#062544" />
+
+  <!-- Luminous Sky Cyan Core -->
+  <circle cx="256" cy="216" r="26" fill="url(#merlo-cyan-glow)" />
+
+  <!-- Dynamic Community "M" Arch -->
+  <path d="M176 316 L216 190 L256 244 L296 190 L336 316" stroke="url(#merlo-cyan-glow)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" />
 </svg>

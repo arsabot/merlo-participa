@@ -1,17 +1,16 @@
-from PIL import Image, ImageDraw
 import math
+from PIL import Image, ImageDraw
 
 def render_civic_icon(size=512):
-    # Create 4x supersampled image for ultra crisp antialiasing
+    # 4x supersampling for ultra-crisp rendering
     scale = 4
     canvas_size = size * scale
     img = Image.new("RGBA", (canvas_size, canvas_size), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
 
-    # 1. Rounded rectangle background with civic blue gradient
-    radius = int(canvas_size * 0.22)
+    # 1. Background Squircle with Deep Civic Gradient
+    radius = int(canvas_size * 0.25)
     
-    # We draw smooth gradient inside the rounded rect
     mask = Image.new("L", (canvas_size, canvas_size), 0)
     mask_draw = ImageDraw.Draw(mask)
     mask_draw.rounded_rectangle([0, 0, canvas_size, canvas_size], radius=radius, fill=255)
@@ -19,9 +18,8 @@ def render_civic_icon(size=512):
     grad_img = Image.new("RGBA", (canvas_size, canvas_size), (0, 0, 0, 0))
     grad_draw = ImageDraw.Draw(grad_img)
 
-    # Civic Navy to Deep Ocean Blue gradient (#0B4F8A to #072C4F)
-    top_color = (11, 79, 138, 255)
-    bottom_color = (7, 44, 79, 255)
+    top_color = (14, 90, 157, 255)      # #0E5A9D
+    bottom_color = (6, 37, 68, 255)     # #062544
     for y in range(canvas_size):
         ratio = y / canvas_size
         r = int(top_color[0] * (1 - ratio) + bottom_color[0] * ratio)
@@ -31,53 +29,63 @@ def render_civic_icon(size=512):
 
     img.paste(grad_img, (0, 0), mask)
 
-    # Border stroke
+    # Border stroke (Cyan glow #38BDF8)
     border_draw = ImageDraw.Draw(img)
-    border_draw.rounded_rectangle([scale * 2, scale * 2, canvas_size - scale * 2, canvas_size - scale * 2], 
-                                  radius=radius, outline=(56, 189, 248, 120), width=scale * 3)
+    border_draw.rounded_rectangle(
+        [scale * 3, scale * 3, canvas_size - scale * 3, canvas_size - scale * 3], 
+        radius=radius, 
+        outline=(56, 189, 248, 160), 
+        width=scale * 3
+    )
 
-    # 2. White map pin
-    cx, cy = canvas_size / 2, canvas_size * 0.44
-    pin_r = canvas_size * 0.26
+    # 2. White Geo Pin
+    cx = canvas_size / 2
+    cy = canvas_size * 0.43
+    pin_r = canvas_size * 0.28
     
-    # Pin head (circle)
+    # Pin circular head
     draw.ellipse([cx - pin_r, cy - pin_r, cx + pin_r, cy + pin_r], fill=(255, 255, 255, 255))
     
-    # Pin point (triangle to bottom)
-    tip_y = canvas_size * 0.82
+    # Pin triangle tip
+    tip_y = canvas_size * 0.84
     draw.polygon([
-        (cx - pin_r * 0.94, cy + pin_r * 0.35),
-        (cx + pin_r * 0.94, cy + pin_r * 0.35),
+        (cx - pin_r * 0.96, cy + pin_r * 0.32),
+        (cx + pin_r * 0.96, cy + pin_r * 0.32),
         (cx, tip_y)
     ], fill=(255, 255, 255, 255))
 
-    # Inner cutout ring
-    inner_r = canvas_size * 0.11
-    draw.ellipse([cx - inner_r, cy - inner_r, cx + inner_r, cy + inner_r], fill=(11, 79, 138, 255))
+    # 3. Inner Dark Blue Hub
+    inner_r = canvas_size * 0.13
+    draw.ellipse([cx - inner_r, cy - inner_r, cx + inner_r, cy + inner_r], fill=(6, 37, 68, 255))
 
-    # 3. Stylized Community "M" in Sky Blue (#38BDF8)
+    # 4. Vibrant Cyan Center Core Node
+    core_r = canvas_size * 0.05
+    draw.ellipse([cx - core_r, cy - core_r, cx + core_r, cy + core_r], fill=(56, 189, 248, 255))
+
+    # 5. Bold Community "M" Arch in Electric Sky Cyan (#38BDF8)
     m_pts = [
-        (cx - canvas_size * 0.15, canvas_size * 0.60),
-        (cx - canvas_size * 0.075, canvas_size * 0.38),
+        (cx - canvas_size * 0.16, canvas_size * 0.62),
+        (cx - canvas_size * 0.08, canvas_size * 0.36),
         (cx, canvas_size * 0.48),
-        (cx + canvas_size * 0.075, canvas_size * 0.38),
-        (cx + canvas_size * 0.15, canvas_size * 0.60)
+        (cx + canvas_size * 0.08, canvas_size * 0.36),
+        (cx + canvas_size * 0.16, canvas_size * 0.62)
     ]
-    draw.line(m_pts, fill=(56, 189, 248, 255), width=int(scale * 7), joint="round")
+    draw.line(m_pts, fill=(56, 189, 248, 255), width=int(scale * 8), joint="round")
 
     # Downsample with highest quality Lanczos filter
     final_img = img.resize((size, size), Image.Resampling.LANCZOS)
     return final_img
 
-# Generate all required PNG and ICO assets
+# Generate all resolutions
 icon_512 = render_civic_icon(512)
 icon_192 = render_civic_icon(192)
 icon_180 = render_civic_icon(180)
 icon_64 = render_civic_icon(64)
+icon_48 = render_civic_icon(48)
 icon_32 = render_civic_icon(32)
 icon_16 = render_civic_icon(16)
 
-# Save to public and src/app
+# Save high-res icons
 icon_512.save("public/icon.png", format="PNG")
 icon_512.save("src/app/icon.png", format="PNG")
 
@@ -85,8 +93,8 @@ icon_180.save("public/apple-touch-icon.png", format="PNG")
 icon_180.save("public/apple-touch-icon-precomposed.png", format="PNG")
 icon_180.save("src/app/apple-icon.png", format="PNG")
 
-# Multi-resolution true-alpha favicon.ico
+# Multi-resolution ICO for legacy and modern browsers
 icon_64.save("public/favicon.ico", format="ICO", sizes=[(16, 16), (32, 32), (48, 48), (64, 64)])
 icon_64.save("src/app/favicon.ico", format="ICO", sizes=[(16, 16), (32, 32), (48, 48), (64, 64)])
 
-print("Successfully generated all civic blue icon and favicon assets.")
+print("Successfully regenerated all high-definition civic favicons.")

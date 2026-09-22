@@ -53,14 +53,14 @@ export const metadata: Metadata = {
     siteName: "Merlo Participa",
     images: [
       {
-        url: '/og-image.png',
+        url: `${siteUrl}/opengraph-image`,
         width: 1200,
         height: 630,
         alt: "Merlo Participa | Portal Vecinal Independiente",
         type: 'image/png',
       },
       {
-        url: '/icon.png',
+        url: `${siteUrl}/icon.png`,
         width: 512,
         height: 512,
         alt: "Merlo Participa - Icono Oficial",
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Merlo Participa | Tu voz, tu barrio, tu comunidad",
     description: "Plataforma ciudadana independiente impulsada por vecinos de Merlo para visibilizar reclamos y transformar los barrios.",
-    images: ['/og-image.png'],
+    images: [`${siteUrl}/twitter-image`],
   },
   robots: {
     index: true,
@@ -90,7 +90,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es-AR" className="h-full antialiased scroll-smooth">
-      <body className="min-h-screen flex flex-col bg-[#F8F7FC] text-[#17151D]">
+      <body className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#0F172A]">
         <Navbar />
         <main className="flex-1">
           {children}
