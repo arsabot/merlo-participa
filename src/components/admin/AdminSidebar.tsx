@@ -39,7 +39,7 @@ export const AdminSidebar: React.FC = () => {
   const handleLogout = (e: React.MouseEvent) => {
     e.preventDefault();
     clearAuthSession();
-    router.push('/login');
+    window.location.href = '/login';
   };
 
   const handleChangePasswordSubmit = (e: React.FormEvent) => {

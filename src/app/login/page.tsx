@@ -2,7 +2,7 @@
 
 import React, { useState, Suspense } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { 
   Lock, 
   Mail, 
@@ -18,7 +18,6 @@ import {
 import { validateCredentials } from "@/lib/auth";
 
 function LoginForm() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const redirectedFrom = searchParams.get("redirectedFrom");
 
@@ -42,14 +41,15 @@ function LoginForm() {
 
     setTimeout(() => {
       const res = validateCredentials(email, password);
-      setIsLoading(false);
 
       if (res.success && res.session) {
-        router.push(getDestination());
+        // Hard navigation ensures cookies and storage state are immediately loaded by layout and data services
+        window.location.href = getDestination();
       } else {
+        setIsLoading(false);
         setError(res.error || "Correo electrónico o contraseña incorrectos.");
       }
-    }, 400);
+    }, 300);
   };
 
   return (
