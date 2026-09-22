@@ -7,9 +7,236 @@ export interface AuthSession {
   expiresAt: number;
 }
 
+export interface UserAccount {
+  email: string;
+  name: string;
+  role: UserRole;
+  password: string;
+  resetCode?: string;
+  resetCodeExpires?: number;
+}
+
 export const AUTH_COOKIE_NAME = 'merlo_participa_session';
 export const AUTH_ROLE_KEY = 'merlo_participa_user_role';
 export const AUTH_LOGGED_KEY = 'merlo_participa_admin_logged';
+export const AUTH_ACCOUNTS_KEY = 'merlo_participa_accounts_v2';
+
+// Default system accounts with initial passwords
+const DEFAULT_ACCOUNTS: UserAccount[] = [
+  {
+    email: 'admin@merloparticipa.org',
+    name: 'Administrador Comunitario',
+    role: 'admin',
+    password: 'Merlo2026!',
+  },
+  {
+    email: 'gestor@merloparticipa.org',
+    name: 'Gestor Barrial',
+    role: 'gestor',
+    password: 'GestorMerlo2026!',
+  },
+];
+
+// Get all accounts from storage or initialize with defaults
+export function getAccounts(): UserAccount[] {
+  if (typeof window === 'undefined') return DEFAULT_ACCOUNTS;
+  try {
+    const raw = localStorage.getItem(AUTH_ACCOUNTS_KEY);
+    if (!raw) {
+      localStorage.setItem(AUTH_ACCOUNTS_KEY, JSON.stringify(DEFAULT_ACCOUNTS));
+      return DEFAULT_ACCOUNTS;
+    }
+    const parsed = JSON.parse(raw) as UserAccount[];
+    if (!Array.isArray(parsed) || parsed.length === 0) {
+      localStorage.setItem(AUTH_ACCOUNTS_KEY, JSON.stringify(DEFAULT_ACCOUNTS));
+      return DEFAULT_ACCOUNTS;
+    }
+    return parsed;
+  } catch (e) {
+    console.error('Error reading accounts from localStorage', e);
+    return DEFAULT_ACCOUNTS;
+  }
+}
+
+// Save accounts
+export function saveAccounts(accounts: UserAccount[]) {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(AUTH_ACCOUNTS_KEY, JSON.stringify(accounts));
+  } catch (e) {
+    console.error('Error saving accounts to localStorage', e);
+  }
+}
+
+// Validate login credentials
+export function validateCredentials(
+  email: string,
+  passwordInput: string
+): { success: boolean; session?: AuthSession; error?: string } {
+  const cleanEmail = email.trim().toLowerCase();
+  const cleanPassword = passwordInput.trim();
+
+  const accounts = getAccounts();
+  const account = accounts.find((a) => a.email.toLowerCase() === cleanEmail);
+
+  if (!account) {
+    return {
+      success: false,
+      error: 'No existe una cuenta registrada con este correo electrónico.',
+    };
+  }
+
+  if (account.password !== cleanPassword) {
+    return {
+      success: false,
+      error: 'Contraseña incorrecta. Verifique e intente nuevamente o restablezca su clave.',
+    };
+  }
+
+  const session = setAuthSession({
+    email: account.email,
+    name: account.name,
+    role: account.role,
+  });
+
+  return {
+    success: true,
+    session,
+  };
+}
+
+// Request password reset PIN
+export function requestPasswordReset(email: string): {
+  success: boolean;
+  resetCode?: string;
+  expiresInMinutes?: number;
+  message: string;
+} {
+  const cleanEmail = email.trim().toLowerCase();
+  const accounts = getAccounts();
+  const index = accounts.findIndex((a) => a.email.toLowerCase() === cleanEmail);
+
+  if (index === -1) {
+    return {
+      success: false,
+      message: 'No encontramos una cuenta asociada a este correo.',
+    };
+  }
+
+  // Generate 6-digit verification code
+  const resetCode = Math.floor(100000 + Math.random() * 900000).toString();
+  const expiresInMinutes = 15;
+  const resetCodeExpires = Date.now() + expiresInMinutes * 60 * 1000;
+
+  accounts[index].resetCode = resetCode;
+  accounts[index].resetCodeExpires = resetCodeExpires;
+  saveAccounts(accounts);
+
+  return {
+    success: true,
+    resetCode,
+    expiresInMinutes,
+    message: `Código de verificación generado correctamente para ${cleanEmail}.`,
+  };
+}
+
+// Verify code and set new password
+export function verifyAndResetPassword(
+  email: string,
+  resetCode: string,
+  newPassword: string
+): { success: boolean; message: string } {
+  const cleanEmail = email.trim().toLowerCase();
+  const cleanCode = resetCode.trim();
+  const cleanNewPassword = newPassword.trim();
+
+  if (cleanNewPassword.length < 6) {
+    return {
+      success: false,
+      message: 'La nueva contraseña debe tener al menos 6 caracteres.',
+    };
+  }
+
+  const accounts = getAccounts();
+  const index = accounts.findIndex((a) => a.email.toLowerCase() === cleanEmail);
+
+  if (index === -1) {
+    return {
+      success: false,
+      message: 'Cuenta no encontrada.',
+    };
+  }
+
+  const account = accounts[index];
+
+  if (!account.resetCode || account.resetCode !== cleanCode) {
+    return {
+      success: false,
+      message: 'El código de verificación es incorrecto o no ha sido solicitado.',
+    };
+  }
+
+  if (account.resetCodeExpires && account.resetCodeExpires < Date.now()) {
+    return {
+      success: false,
+      message: 'El código de verificación ha expirado. Solicite uno nuevo.',
+    };
+  }
+
+  // Update password and clear reset code
+  accounts[index].password = cleanNewPassword;
+  delete accounts[index].resetCode;
+  delete accounts[index].resetCodeExpires;
+  saveAccounts(accounts);
+
+  return {
+    success: true,
+    message: '¡Tu contraseña ha sido restablecida exitosamente! Ya puedes iniciar sesión.',
+  };
+}
+
+// Change password for currently logged-in user
+export function changePassword(
+  email: string,
+  currentPasswordInput: string,
+  newPasswordInput: string
+): { success: boolean; message: string } {
+  const cleanEmail = email.trim().toLowerCase();
+  const cleanCurrentPassword = currentPasswordInput.trim();
+  const cleanNewPassword = newPasswordInput.trim();
+
+  if (cleanNewPassword.length < 6) {
+    return {
+      success: false,
+      message: 'La nueva contraseña debe tener al menos 6 caracteres.',
+    };
+  }
+
+  const accounts = getAccounts();
+  const index = accounts.findIndex((a) => a.email.toLowerCase() === cleanEmail);
+
+  if (index === -1) {
+    return {
+      success: false,
+      message: 'Usuario no encontrado.',
+    };
+  }
+
+  if (accounts[index].password !== cleanCurrentPassword) {
+    return {
+      success: false,
+      message: 'La contraseña actual ingresada es incorrecta.',
+    };
+  }
+
+  accounts[index].password = cleanNewPassword;
+  saveAccounts(accounts);
+
+  return {
+    success: true,
+    message: 'Contraseña actualizada correctamente.',
+  };
+}
 
 // Helper to set cookie with standard parameters
 export function setAuthCookie(session: AuthSession, days = 7) {
