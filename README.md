@@ -5,6 +5,8 @@
 
 Plataforma cívica independiente para reporte, geolocalización y seguimiento de problemáticas barriales, reclamos de infraestructura y propuestas comunitarias para el municipio de Merlo.
 
+<img src="assets/preview.png" alt="Merlo Participa Preview" width="100%" style="border-radius: 12px; margin: 16px 0; border: 1px solid rgba(255,255,255,0.1);" />
+
 [![Next.js](https://img.shields.io/badge/Next.js-16.3-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.2-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
