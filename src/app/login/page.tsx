@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React, { useState, Suspense } from 'react';
-import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
+import React, { useState, Suspense } from "react";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { 
   Lock, 
   Mail, 
@@ -14,25 +14,25 @@ import {
   Eye,
   EyeOff,
   KeyRound
-} from 'lucide-react';
-import { validateCredentials, setAuthSession, getAccounts, UserRole } from '@/lib/auth';
+} from "lucide-react";
+import { validateCredentials } from "@/lib/auth";
 
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirectedFrom = searchParams.get('redirectedFrom');
+  const redirectedFrom = searchParams.get("redirectedFrom");
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const getDestination = () => {
-    if (redirectedFrom && redirectedFrom.startsWith('/admin')) {
+    if (redirectedFrom && redirectedFrom.startsWith("/admin")) {
       return redirectedFrom;
     }
-    return '/admin';
+    return "/admin";
   };
 
   const handleLogin = (e: React.FormEvent) => {
@@ -47,32 +47,9 @@ function LoginForm() {
       if (res.success && res.session) {
         router.push(getDestination());
       } else {
-        setError(res.error || 'Credenciales inválidas. Por favor verifique sus datos.');
+        setError(res.error || "Correo electrónico o contraseña incorrectos.");
       }
     }, 400);
-  };
-
-  const handleQuickDemoAccess = (role: UserRole) => {
-    const targetEmail = role === 'admin' ? 'admin@merloparticipa.org' : 'gestor@merloparticipa.org';
-    const accounts = getAccounts();
-    const account = accounts.find((a) => a.email.toLowerCase() === targetEmail);
-
-    if (account) {
-      setEmail(account.email);
-      setPassword(account.password);
-      setAuthSession({
-        email: account.email,
-        name: account.name,
-        role: account.role,
-      });
-      router.push(getDestination());
-    } else {
-      setAuthSession({
-        email: targetEmail,
-        role: role,
-      });
-      router.push(getDestination());
-    }
   };
 
   return (
@@ -99,7 +76,7 @@ function LoginForm() {
               Acceso a Gestión Vecinal
             </h1>
             <p className="text-xs text-[#64748B]">
-              Panel para coordinadores barriales y administradores comunitarios de Merlo Participa.
+              Panel para coordinadores barriales y administradores comunitarios.
             </p>
           </div>
 
@@ -133,7 +110,7 @@ function LoginForm() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@merloparticipa.org"
+                  placeholder="usuario@correo.com"
                   className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0284C7]"
                   required
                 />
@@ -156,7 +133,7 @@ function LoginForm() {
               <div className="relative">
                 <Key className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
@@ -186,35 +163,6 @@ function LoginForm() {
               <span>Ingresar al Panel</span>
             </button>
           </form>
-
-          {/* Quick Demo Access Roles */}
-          <div className="pt-4 border-t border-slate-100 space-y-3">
-            <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block text-center">
-              Acceso rápido con contraseña precargada:
-            </span>
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                type="button"
-                onClick={() => handleQuickDemoAccess('admin')}
-                className="p-2.5 rounded-xl text-xs font-semibold bg-sky-50 text-[#072C4F] hover:bg-sky-100 border border-sky-200 transition-colors flex flex-col items-center justify-center gap-1"
-              >
-                <span className="font-bold text-sky-950">Administrador</span>
-                <span className="text-[10px] text-sky-700 font-mono bg-white px-1.5 py-0.5 rounded border border-sky-200">
-                  Merlo2026!
-                </span>
-              </button>
-              <button
-                type="button"
-                onClick={() => handleQuickDemoAccess('gestor')}
-                className="p-2.5 rounded-xl text-xs font-semibold bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200 transition-colors flex flex-col items-center justify-center gap-1"
-              >
-                <span className="font-bold text-slate-900">Gestor Barrial</span>
-                <span className="text-[10px] text-slate-600 font-mono bg-white px-1.5 py-0.5 rounded border border-slate-200">
-                  GestorMerlo2026!
-                </span>
-              </button>
-            </div>
-          </div>
 
         </div>
 

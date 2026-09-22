@@ -1,4 +1,4 @@
-export type UserRole = 'admin' | 'gestor';
+export type UserRole = "admin" | "gestor";
 
 export interface AuthSession {
   email: string;
@@ -16,30 +16,30 @@ export interface UserAccount {
   resetCodeExpires?: number;
 }
 
-export const AUTH_COOKIE_NAME = 'merlo_participa_session';
-export const AUTH_ROLE_KEY = 'merlo_participa_user_role';
-export const AUTH_LOGGED_KEY = 'merlo_participa_admin_logged';
-export const AUTH_ACCOUNTS_KEY = 'merlo_participa_accounts_v2';
+export const AUTH_COOKIE_NAME = "merlo_participa_session";
+export const AUTH_ROLE_KEY = "merlo_participa_user_role";
+export const AUTH_LOGGED_KEY = "merlo_participa_admin_logged";
+export const AUTH_ACCOUNTS_KEY = "merlo_participa_accounts_v2";
 
 // Default system accounts with initial passwords
 const DEFAULT_ACCOUNTS: UserAccount[] = [
   {
-    email: 'admin@merloparticipa.org',
-    name: 'Administrador Comunitario',
-    role: 'admin',
-    password: 'Merlo2026!',
+    email: "admin@merloparticipa.org",
+    name: "Administrador Comunitario",
+    role: "admin",
+    password: "Merlo2026!",
   },
   {
-    email: 'gestor@merloparticipa.org',
-    name: 'Gestor Barrial',
-    role: 'gestor',
-    password: 'GestorMerlo2026!',
+    email: "gestor@merloparticipa.org",
+    name: "Gestor Barrial",
+    role: "gestor",
+    password: "GestorMerlo2026!",
   },
 ];
 
 // Get all accounts from storage or initialize with defaults
 export function getAccounts(): UserAccount[] {
-  if (typeof window === 'undefined') return DEFAULT_ACCOUNTS;
+  if (typeof window === "undefined") return DEFAULT_ACCOUNTS;
   try {
     const raw = localStorage.getItem(AUTH_ACCOUNTS_KEY);
     if (!raw) {
@@ -53,22 +53,22 @@ export function getAccounts(): UserAccount[] {
     }
     return parsed;
   } catch (e) {
-    console.error('Error reading accounts from localStorage', e);
+    console.error("Error reading accounts from localStorage", e);
     return DEFAULT_ACCOUNTS;
   }
 }
 
 // Save accounts
 export function saveAccounts(accounts: UserAccount[]) {
-  if (typeof window === 'undefined') return;
+  if (typeof window === "undefined") return;
   try {
     localStorage.setItem(AUTH_ACCOUNTS_KEY, JSON.stringify(accounts));
   } catch (e) {
-    console.error('Error saving accounts to localStorage', e);
+    console.error("Error saving accounts to localStorage", e);
   }
 }
 
-// Validate login credentials
+// Validate login credentials (prevents user enumeration)
 export function validateCredentials(
   email: string,
   passwordInput: string
@@ -79,17 +79,11 @@ export function validateCredentials(
   const accounts = getAccounts();
   const account = accounts.find((a) => a.email.toLowerCase() === cleanEmail);
 
-  if (!account) {
+  // Generic constant-time error to avoid leaking whether user exists
+  if (!account || account.password !== cleanPassword) {
     return {
       success: false,
-      error: 'No existe una cuenta registrada con este correo electrónico.',
-    };
-  }
-
-  if (account.password !== cleanPassword) {
-    return {
-      success: false,
-      error: 'Contraseña incorrecta. Verifique e intente nuevamente o restablezca su clave.',
+      error: "Correo electrónico o contraseña incorrectos.",
     };
   }
 
@@ -105,10 +99,9 @@ export function validateCredentials(
   };
 }
 
-// Request password reset PIN
+// Request password reset PIN (prevents user enumeration)
 export function requestPasswordReset(email: string): {
   success: boolean;
-  resetCode?: string;
   expiresInMinutes?: number;
   message: string;
 } {
@@ -116,27 +109,23 @@ export function requestPasswordReset(email: string): {
   const accounts = getAccounts();
   const index = accounts.findIndex((a) => a.email.toLowerCase() === cleanEmail);
 
-  if (index === -1) {
-    return {
-      success: false,
-      message: 'No encontramos una cuenta asociada a este correo.',
-    };
+  const expiresInMinutes = 15;
+
+  if (index !== -1) {
+    // Generate 6-digit verification code
+    const resetCode = Math.floor(100000 + Math.random() * 900000).toString();
+    const resetCodeExpires = Date.now() + expiresInMinutes * 60 * 1000;
+
+    accounts[index].resetCode = resetCode;
+    accounts[index].resetCodeExpires = resetCodeExpires;
+    saveAccounts(accounts);
   }
 
-  // Generate 6-digit verification code
-  const resetCode = Math.floor(100000 + Math.random() * 900000).toString();
-  const expiresInMinutes = 15;
-  const resetCodeExpires = Date.now() + expiresInMinutes * 60 * 1000;
-
-  accounts[index].resetCode = resetCode;
-  accounts[index].resetCodeExpires = resetCodeExpires;
-  saveAccounts(accounts);
-
+  // Always return identical success message to prevent user enumeration
   return {
     success: true,
-    resetCode,
     expiresInMinutes,
-    message: `Código de verificación generado correctamente para ${cleanEmail}.`,
+    message: "Si la dirección ingresada coincide con una cuenta activa, se ha enviado un código de verificación.",
   };
 }
 
@@ -153,7 +142,7 @@ export function verifyAndResetPassword(
   if (cleanNewPassword.length < 6) {
     return {
       success: false,
-      message: 'La nueva contraseña debe tener al menos 6 caracteres.',
+      message: "La nueva contraseña debe tener al menos 6 caracteres.",
     };
   }
 
@@ -163,7 +152,7 @@ export function verifyAndResetPassword(
   if (index === -1) {
     return {
       success: false,
-      message: 'Cuenta no encontrada.',
+      message: "Código de verificación incorrecto o expirado.",
     };
   }
 
@@ -172,14 +161,14 @@ export function verifyAndResetPassword(
   if (!account.resetCode || account.resetCode !== cleanCode) {
     return {
       success: false,
-      message: 'El código de verificación es incorrecto o no ha sido solicitado.',
+      message: "Código de verificación incorrecto o expirado.",
     };
   }
 
   if (account.resetCodeExpires && account.resetCodeExpires < Date.now()) {
     return {
       success: false,
-      message: 'El código de verificación ha expirado. Solicite uno nuevo.',
+      message: "El código de verificación ha expirado. Solicite uno nuevo.",
     };
   }
 
@@ -191,7 +180,7 @@ export function verifyAndResetPassword(
 
   return {
     success: true,
-    message: '¡Tu contraseña ha sido restablecida exitosamente! Ya puedes iniciar sesión.',
+    message: "¡Tu contraseña ha sido restablecida exitosamente! Ya puedes iniciar sesión con tu nueva clave.",
   };
 }
 
@@ -208,7 +197,7 @@ export function changePassword(
   if (cleanNewPassword.length < 6) {
     return {
       success: false,
-      message: 'La nueva contraseña debe tener al menos 6 caracteres.',
+      message: "La nueva contraseña debe tener al menos 6 caracteres.",
     };
   }
 
@@ -218,14 +207,14 @@ export function changePassword(
   if (index === -1) {
     return {
       success: false,
-      message: 'Usuario no encontrado.',
+      message: "Usuario no encontrado.",
     };
   }
 
   if (accounts[index].password !== cleanCurrentPassword) {
     return {
       success: false,
-      message: 'La contraseña actual ingresada es incorrecta.',
+      message: "La contraseña actual ingresada es incorrecta.",
     };
   }
 
@@ -234,13 +223,13 @@ export function changePassword(
 
   return {
     success: true,
-    message: 'Contraseña actualizada correctamente.',
+    message: "Contraseña actualizada correctamente.",
   };
 }
 
 // Helper to set cookie with standard parameters
 export function setAuthCookie(session: AuthSession, days = 7) {
-  if (typeof document === 'undefined') return;
+  if (typeof document === "undefined") return;
   const expires = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString();
   const sessionStr = encodeURIComponent(JSON.stringify(session));
   document.cookie = `${AUTH_COOKIE_NAME}=${sessionStr}; path=/; expires=${expires}; SameSite=Lax`;
@@ -248,19 +237,19 @@ export function setAuthCookie(session: AuthSession, days = 7) {
 
 // Helper to clear cookie
 export function clearAuthCookie() {
-  if (typeof document === 'undefined') return;
+  if (typeof document === "undefined") return;
   document.cookie = `${AUTH_COOKIE_NAME}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax`;
 }
 
 // Helper to read session from cookie
 export function getAuthCookie(): AuthSession | null {
-  if (typeof document === 'undefined') return null;
-  const cookies = document.cookie.split(';');
+  if (typeof document === "undefined") return null;
+  const cookies = document.cookie.split(";");
   for (const c of cookies) {
-    const [name, ...val] = c.trim().split('=');
+    const [name, ...val] = c.trim().split("=");
     if (name === AUTH_COOKIE_NAME) {
       try {
-        const parsed = JSON.parse(decodeURIComponent(val.join('=')));
+        const parsed = JSON.parse(decodeURIComponent(val.join("=")));
         if (parsed && parsed.email) {
           return parsed as AuthSession;
         }
@@ -276,17 +265,17 @@ export function getAuthCookie(): AuthSession | null {
 export function setAuthSession(sessionData: { email: string; name?: string; role?: UserRole }) {
   const session: AuthSession = {
     email: sessionData.email,
-    name: sessionData.name || (sessionData.role === 'admin' ? 'Administrador Comunitario' : 'Gestor Barrial'),
-    role: sessionData.role || 'admin',
+    name: sessionData.name || (sessionData.role === "admin" ? "Administrador Comunitario" : "Gestor Barrial"),
+    role: sessionData.role || "admin",
     expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
   };
 
   setAuthCookie(session);
 
-  if (typeof window !== 'undefined') {
-    localStorage.setItem(AUTH_LOGGED_KEY, 'true');
+  if (typeof window !== "undefined") {
+    localStorage.setItem(AUTH_LOGGED_KEY, "true");
     localStorage.setItem(AUTH_ROLE_KEY, session.role);
-    localStorage.setItem('merlo_participa_user_email', session.email);
+    localStorage.setItem("merlo_participa_user_email", session.email);
   }
 
   return session;
@@ -296,10 +285,10 @@ export function setAuthSession(sessionData: { email: string; name?: string; role
 export function clearAuthSession() {
   clearAuthCookie();
 
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     localStorage.removeItem(AUTH_LOGGED_KEY);
     localStorage.removeItem(AUTH_ROLE_KEY);
-    localStorage.removeItem('merlo_participa_user_email');
+    localStorage.removeItem("merlo_participa_user_email");
   }
 }
 
@@ -308,18 +297,17 @@ export function getClientAuthSession(): AuthSession | null {
   const cookieSession = getAuthCookie();
   if (cookieSession) return cookieSession;
 
-  if (typeof window !== 'undefined') {
-    const isLogged = localStorage.getItem(AUTH_LOGGED_KEY) === 'true';
+  if (typeof window !== "undefined") {
+    const isLogged = localStorage.getItem(AUTH_LOGGED_KEY) === "true";
     if (isLogged) {
-      const role = (localStorage.getItem(AUTH_ROLE_KEY) as UserRole) || 'admin';
-      const email = localStorage.getItem('merlo_participa_user_email') || 'admin@merloparticipa.org';
+      const role = (localStorage.getItem(AUTH_ROLE_KEY) as UserRole) || "admin";
+      const email = localStorage.getItem("merlo_participa_user_email") || "admin@merloparticipa.org";
       const session: AuthSession = {
         email,
-        name: role === 'admin' ? 'Administrador Comunitario' : 'Gestor Barrial',
+        name: role === "admin" ? "Administrador Comunitario" : "Gestor Barrial",
         role,
         expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
       };
-      // Sync cookie
       setAuthCookie(session);
       return session;
     }
