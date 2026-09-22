@@ -52,9 +52,9 @@ const INITIAL_COMPLAINTS: Complaint[] = [
         previousStatus: 'recibido',
         newStatus: 'validado',
         title: 'Problemática constatada en territorio',
-        description: 'Equipo de LLA Merlo constató 4 postes consecutivos con artefactos LED fuera de servicio.',
+        description: 'Equipo de relevamiento barrial constató 4 postes consecutivos con artefactos LED fuera de servicio.',
         isInternalNote: false,
-        authorName: 'Equipo Territorial LLA',
+        authorName: 'Equipo Territorial Merlo Participa',
         createdAt: new Date(Date.now() - 9 * 24 * 3600 * 1000).toISOString(),
       },
       {
@@ -65,7 +65,7 @@ const INITIAL_COMPLAINTS: Complaint[] = [
         title: 'Ingreso formal de reclamo y pedido de informe',
         description: 'Se elevó solicitud formal de reparación a la secretaría de alumbrado público correspondiente.',
         isInternalNote: false,
-        authorName: 'Secretaría de Gestión Barrial LLA',
+        authorName: 'Coordinación de Gestión Barrial',
         createdAt: new Date(Date.now() - 5 * 24 * 3600 * 1000).toISOString(),
       },
       {
@@ -133,9 +133,9 @@ const INITIAL_COMPLAINTS: Complaint[] = [
         previousStatus: 'recibido',
         newStatus: 'derivado',
         title: 'Proyecto de resolución presentado',
-        description: 'Presentado en el bloque legislativo para exigir plan de bacheo urgente en Noguera.',
+        description: 'Presentado en la mesa de trabajo vecinal para exigir plan de bacheo urgente en Noguera.',
         isInternalNote: false,
-        authorName: 'Bloque LLA Merlo',
+        authorName: 'Comisión de Reclamos Vecinales',
         createdAt: new Date(Date.now() - 4 * 24 * 3600 * 1000).toISOString(),
       },
     ],
@@ -193,7 +193,7 @@ const INITIAL_COMPLAINTS: Complaint[] = [
         title: 'Evaluación de impacto ambiental barrial',
         description: 'Relevando dimensiones del basural y recurrencia de camiones clandestinos.',
         isInternalNote: false,
-        authorName: 'Equipo de Medio Ambiente LLA',
+        authorName: 'Equipo Comunitario de Ambiente',
         createdAt: new Date(Date.now() - 3 * 24 * 3600 * 1000).toISOString(),
       },
     ],
@@ -240,7 +240,7 @@ const INITIAL_COMPLAINTS: Complaint[] = [
         title: 'Verificación hidráulica',
         description: 'Confirmado taponamiento de cañerías en el cruce de Gómez Fretes.',
         isInternalNote: false,
-        authorName: 'Mesa Técnica LLA',
+        authorName: 'Mesa Técnica Vecinal',
         createdAt: new Date(Date.now() - 2 * 24 * 3600 * 1000).toISOString(),
       },
     ],
@@ -285,9 +285,9 @@ const INITIAL_COMPLAINTS: Complaint[] = [
         previousStatus: 'recibido',
         newStatus: 'validado',
         title: 'Incorporada a cartera de proyectos barriales',
-        description: 'Se preparó anteproyecto para canalizar la petición ante las comisiones de transporte.',
+        description: 'Se preparó anteproyecto para canalizar la petición ante las áreas técnicas de transporte.',
         isInternalNote: false,
-        authorName: 'Comisión de Educación y Tránsito LLA',
+        authorName: 'Comisión de Tránsito y Seguridad Vial',
         createdAt: new Date(Date.now() - 1 * 24 * 3600 * 1000).toISOString(),
       },
     ],
@@ -314,7 +314,7 @@ const INITIAL_COMPLAINTS: Complaint[] = [
     supportCount: 38,
     createdAt: new Date(Date.now() - 25 * 24 * 3600 * 1000).toISOString(),
     updatedAt: new Date(Date.now() - 7 * 24 * 3600 * 1000).toISOString(),
-    resolutionNotes: 'Problemática verificada como subsanada por los vecinos del barrio y equipo de relevamiento LLA el 12 de marzo de 2026.',
+    resolutionNotes: 'Problemática verificada como subsanada por los vecinos del barrio y equipo de relevamiento vecinal el 12 de marzo de 2026.',
     resolvedAt: new Date(Date.now() - 7 * 24 * 3600 * 1000).toISOString(),
     updates: [
       {
@@ -336,7 +336,7 @@ const INITIAL_COMPLAINTS: Complaint[] = [
         title: 'Elevación de reclamo a delegación Pontevedra',
         description: 'Se impulsó el pedido de recambio de luminarias y arreglo de bomba.',
         isInternalNote: false,
-        authorName: 'Gestión Barrial Pontevedra LLA',
+        authorName: 'Coordinación Barrial Pontevedra',
         createdAt: new Date(Date.now() - 18 * 24 * 3600 * 1000).toISOString(),
       },
       {
@@ -347,15 +347,15 @@ const INITIAL_COMPLAINTS: Complaint[] = [
         title: 'Verificación de resolución en territorio',
         description: 'Se constató el funcionamiento correcto de las farolas y la bomba de la plaza junto a vecinos referentes.',
         isInternalNote: false,
-        authorName: 'Mesa Directiva LLA Merlo',
+        authorName: 'Coordinación General Merlo Participa',
         createdAt: new Date(Date.now() - 7 * 24 * 3600 * 1000).toISOString(),
       },
     ],
   },
 ];
 
-const STORAGE_KEY = 'merlo_participa_complaints_v1';
-const SUPPORTS_STORAGE_KEY = 'merlo_participa_user_supports_v1';
+const STORAGE_KEY = 'merlo_participa_complaints_v2';
+const SUPPORTS_STORAGE_KEY = 'merlo_participa_user_supports_v2';
 
 function getLocalStore(): Complaint[] {
   if (typeof window === 'undefined') {

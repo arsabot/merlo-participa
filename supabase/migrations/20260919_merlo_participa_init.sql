@@ -1,4 +1,4 @@
--- Schema for Merlo Participa (La Libertad Avanza Merlo)
+-- Schema for Merlo Participa - Portal Vecinal Comunitario
 -- Production ready PostgreSQL / Supabase migration
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";

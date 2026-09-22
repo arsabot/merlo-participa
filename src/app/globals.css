@@ -24,47 +24,47 @@
 }
 
 /* Custom Utility Classes for Civic Tech Styling */
-.bg-civic-primary, .bg-lla-primary {
+.bg-civic-primary {
   background-color: #0B4F8A;
 }
 
-.bg-civic-dark, .bg-lla-dark {
+.bg-civic-dark {
   background-color: #072C4F;
 }
 
-.bg-civic-light, .bg-lla-light {
+.bg-civic-light {
   background-color: #0284C7;
 }
 
-.bg-civic-subtle, .bg-lla-subtle {
+.bg-civic-subtle {
   background-color: #F0F7FF;
 }
 
-.text-civic-primary, .text-lla-primary {
+.text-civic-primary {
   color: #0B4F8A;
 }
 
-.text-civic-dark, .text-lla-dark {
+.text-civic-dark {
   color: #072C4F;
 }
 
-.text-civic-light, .text-lla-light {
+.text-civic-light {
   color: #0284C7;
 }
 
-.border-civic-primary, .border-lla-primary {
+.border-civic-primary {
   border-color: #0B4F8A;
 }
 
-.border-civic-subtle, .border-lla-subtle {
+.border-civic-subtle {
   border-color: #E2E8F0;
 }
 
-.shadow-civic-soft, .shadow-lla-soft {
+.shadow-civic-soft {
   box-shadow: 0 4px 20px -2px rgba(11, 79, 138, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
 }
 
-.shadow-civic-card, .shadow-lla-card {
+.shadow-civic-card {
   box-shadow: 0 10px 30px -4px rgba(11, 79, 138, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.05);
 }
 

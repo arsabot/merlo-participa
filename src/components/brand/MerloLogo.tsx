@@ -63,5 +63,3 @@ export const MerloLogo: React.FC<MerloLogoProps> = ({
     </svg>
   );
 };
-
-export const LLALogo = MerloLogo;
